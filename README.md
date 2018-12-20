@@ -296,7 +296,9 @@ https://coursehunters.net/course/node-js-polnoe-rukovodstvo-po-sozdaniyu-restful
 Урок 147. Extracting the Validation Logic 00:01:54
 
 Урок 148. Showing Unhandled Exceptions on the Console 00:01:30
+
 149 - 198. Testing
+
 Урок 199. Refactoring the Validation Logic 00:06:45
 
 Урок 200. Mongoose Static Methods 00:06:13
