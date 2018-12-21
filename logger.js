@@ -8,3 +8,4 @@ function log(message) {
 
 module.exports = log;
 // exports.log = log; // also valid
+
