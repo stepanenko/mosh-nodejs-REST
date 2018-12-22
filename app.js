@@ -25,18 +25,12 @@ fs.readdir('./', (err, data) => {
 });
 
 // ======== Event ========
-const EventEmitter = require('events');
-const emitter = new EventEmitter;
+const Logger = require('./logger');
 
+const logger = new Logger;
 
-emitter.on('messageLogged', function(data) {
-  console.log('message received:', data);
-});
-
-emitter.on('message', (message) => {
+logger.on('message', (message) => {
   console.log('New message:', message);
 });
 
-emitter.emit('messageLogged', { id: 1, url: 'http://' });
-
-emitter.emit('message', { user: 'John', message: 'Hello world'});
+logger.log('New Message');
