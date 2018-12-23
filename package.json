@@ -1,0 +1,24 @@
+{
+  "name": "mosh-REST",
+  "version": "1.0.0",
+  "description": "https://coursehunters.net/course/node-js-polnoe-rukovodstvo-po-sozdaniyu-restful-api",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stepanenko/mosh-REST.git"
+  },
+  "keywords": [],
+  "author": "Sergio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stepanenko/mosh-REST/issues"
+  },
+  "homepage": "https://github.com/stepanenko/mosh-REST#readme",
+  "dependencies": {
+    "lodash": "^4.17.11",
+    "mongoose": "^5.4.0"
+  }
+}
