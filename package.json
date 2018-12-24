@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/stepanenko/mosh-REST#readme",
   "dependencies": {
-    "lodash": "^4.17.11",
-    "mongoose": "^5.4.0"
+    "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "jshint": "^2.9.7"
   }
 }
