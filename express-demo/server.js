@@ -13,7 +13,7 @@ let courses = [
 ];
 
 app.get('/', (req, res) => {
-  res.send('Hello world');
+  res.send('Mosh RESTful API');
 });
 
 app.get('/api/courses', (req, res) => {
@@ -22,7 +22,7 @@ app.get('/api/courses', (req, res) => {
 
 app.get('/api/courses/:id', (req, res) => {
   const course = courses.find(c => c.id === parseInt(req.params.id));
-  course ? res.send(course) : res.status(404).send('Course not found');
+  course ? res.send(course) : res.status(404).send('Course was not found');
 });
 
 app.get('/api/posts/:year/:month', (req, res) => {
@@ -32,10 +32,7 @@ app.get('/api/posts/:year/:month', (req, res) => {
 
 app.post('/api/courses', (req, res) => {
   const { error } = validate(req.body);
-  if (error) {
-    res.status(400).send(error.details[0].message);
-    return;
-  }
+  if (error) return res.status(400).send(error.details[0].message);
 
   const course = {
     id: courses.length + 1,
@@ -51,18 +48,25 @@ app.post('/api/courses', (req, res) => {
 app.put('/api/courses/:id', (req, res) => {
   let course = courses.find(c => c.id === parseInt(req.params.id));
 
-  if (!course) {
-    res.status(404).send('Course not found');
-    return;
-  }
+  if (!course) return res.status(404).send('Course was not found');
   
   const { error } = validate(req.body);
-  if (error) {
-    res.status(400).send(error.details[0].message);
-    return;
-  }
+  if (error) return res.status(400).send(error.details[0].message);
 
   course.name = req.body.name
+
+  res.send(course);
+});
+
+app.delete('/api/courses/:id', (req, res) => {
+  const course = courses.find(c => c.id === parseInt(req.params.id));
+
+  if (!course) return res.status(404).send('Course was not found');
+
+  const index = courses.indexOf(course);
+  courses.splice(index, 1);
+  // ===my version:) ===
+  // courses = courses.filter(c => c !== course);
 
   res.send(course);
 });
