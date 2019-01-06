@@ -38,6 +38,26 @@ app.post('/api/genres', (req, res) => {
   res.send(newGenre);
 });
 
+app.put('/api/genres/:id', (req, res) => {
+  const genre = genres.find(g => g.id === parseInt(req.params.id));
+
+  if (!genre) return res.send('Such genre was not found');
+
+  genre.name = req.body.name;
+
+  res.send(genre);
+});
+
+app.delete('/api/genres/:id', (req, res) => {
+  const genre = genres.find(g => g.id === parseInt(req.params.id));
+
+  if (!genre) return res.send('Such genre was not found');
+
+  genres = genres.filter(g => g !== genre);
+
+  res.send(genre);
+});
+
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log('Listening on 3000');
