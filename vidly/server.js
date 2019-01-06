@@ -1,10 +1,18 @@
 
 const express = require('express');
 const Joi = require('joi');
+const myMiddleware = require('./myMiddleware');
 
 const app = express();
 
 app.use(express.json());
+
+app.use(function(req, res, next) {
+  console.log('hello my middleware 1');
+  next();
+});
+
+app.use(myMiddleware);
 
 let genres = [
   { id: 1, name: 'Thriller' },
