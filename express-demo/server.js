@@ -1,12 +1,34 @@
 
-const Joi = require('joi');
 const express = require('express');
+const Joi = require('joi');
+const helmet = require('helmet');
+const morgan = require('morgan');
+const config = require('config');
+const startupDebugger = require('debug')('app:startup'); // or 'debug'
+const dbDebugger = require('debug')('app:db');
 
 const app = express();
 
+// console.log(`NODE_ENV: ${process.env.NODE_ENV}`); // by default 'undefined'
+// console.log(`App: ${app.get('env')}`); // prod or dev...
+
+app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // key=value&key=value
 app.use(express.static('public'));
+
+// Configuration
+startupDebugger('App Name: ' + config.get('name'));
+startupDebugger('App Mail Server: ' + config.get('mail.host'));
+startupDebugger('App Mail Password: ' + config.get('mail.password')); // was set from terminal with 'export app_password=1234'
+
+if (app.get('env') === 'development') {
+  app.use(morgan('tiny'));
+  startupDebugger('Morgan is enabled...'); // better than console.log()
+}
+
+// DB Work ...
+dbDebugger('Connected to DB...');
 
 let courses = [
   { id: 1, name: 'Java' },
