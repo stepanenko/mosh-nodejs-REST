@@ -1,6 +1,6 @@
 
 const express = require('express');
-const myMiddleware = require('./myMiddleware');
+const myMiddleware = require('./middleware/myMiddleware');
 const debug = require('debug')('server');
 const genres = require('./routes/genres');
 const home = require('./routes/home');
