@@ -1,6 +1,8 @@
 
+const debug = require('debug')('server');
+
 function myMiddle(req, res, next) {
-  console.log('My Middleware function 2 is workig');
+  debug('My Middleware function 2 is workig');
   next();
 }
 
