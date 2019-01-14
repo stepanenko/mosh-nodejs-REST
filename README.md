@@ -1,48 +1,6 @@
 ## Node.js: The Complete Guide to Build RESTful APIs
 [coursehunters link](https://coursehunters.net/course/node-js-polnoe-rukovodstvo-po-sozdaniyu-restful-api)
 
-Урок 49. Handling HTTP Delete Requests 00:04:45
-
-Урок 50. Project- Build the Genres API 00:01:19
-
-Урок 51. Introducion 00:00:23
-
-Урок 52. MIddleware 00:02:49
-
-Урок 53. Creating Custom Middleware 00:04:24
-
-Урок 54. Built-In Middleware 00:03:58
-
-Урок 55. Third-party Middleware 00:03:56
-
-Урок 56. Environments 00:04:07
-
-Урок 57. Configuration 00:09:46
-
-Урок 58. Debugging 00:06:55
-
-Урок 59. Templating Engines 00:04:56
-
-Урок 60. Database Integration 00:01:37
-
-Урок 61. Authentication 00:00:30
-
-Урок 62. Structuring Express Applications 00:07:45
-
-Урок 63. Project- Restructure the App 00:03:06
-
-Урок 64. Synchronous Vs. Asynchronous Code 00:05:52
-
-Урок 65. Patterns For Dealing With Asynchronous Code 00:03:08
-
-Урок 66. Callbacks 00:06:00
-
-Урок 67. Callback Hell 00:02:29
-
-Урок 68. Named Functions to Rescue 00:04:42
-
-Урок 69. Promises 00:08:38
-
 Урок 70. Replacing Callbacks with Promises 00:03:32
 
 Урок 71. Consuming Promises 00:05:32
