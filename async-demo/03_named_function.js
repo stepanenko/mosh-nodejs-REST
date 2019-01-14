@@ -1,22 +1,16 @@
 
 console.log('before');
-getUser(1, (username) => {
-  console.log(username);
-  getRepos(username, (repos) => {
-    console.log(repos);
-    getCommits(repos[0], (commits) => {
-      console.log(`Commits of ${repos[0]}: `, commits);
-    });
-  });
-});
+getUser(1, displayUser);
 console.log('after');
 
-function getRep(user) {
-  getRepos(user, getCommits);
+function displayUser(user) {
+  console.log(user);
+  getRepos(user.gitHubUsername, displayRepos);
 }
 
-function getComm(commits) {
-  getCommits(repo, displayCommits);
+function displayRepos(repos) {
+  console.log(repos);
+  getCommits(repos[0], displayCommits);
 }
 
 function displayCommits(commits) {
@@ -26,19 +20,21 @@ function displayCommits(commits) {
 
 function getUser(id, callback) {
   setTimeout(() => {
-    console.log('Data from database');
+    console.log('Getting user from database:');
     callback({ id: id, gitHubUsername: 'Serhio'});
   }, 1000);
 }
 
 function getRepos(username, callback) {
   setTimeout(() => {
+    console.log(`Getting repos of ${username}:`);
     callback(['repo1', 'repo2']);
   }, 1000);
 }
 
 function getCommits(repo, callback) {
   setTimeout(() => {
+    console.log(`Getting commits of ${repo}:`);
     callback(['commit1', 'commit2']);
   }, 1000);
 }
