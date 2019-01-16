@@ -9,11 +9,12 @@ console.log('before');
 //     });
 //   });
 // });
-const user = getUser(1)
-user
+getUser(1)
   .then(u => getRepos(u.gitHubUsername))
   .then(r => getCommits(r[0]))
-  .then(c => console.log(c));
+  .then(c => console.log(c))
+  .catch(err => console.log('Error occured: ', err.message));
+
 console.log('after');
 
 
@@ -22,7 +23,7 @@ function getUser(id) {
     setTimeout(() => {
       console.log('Reading data from database...');
       resolve({ id: id, gitHubUsername: 'Serhio'});
-    }, 1500);
+    }, 1000);
   });
 }
 
@@ -39,6 +40,6 @@ function getCommits(repo) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(['commit1', 'commit2']);
-    }, 1500);
+    }, 1000);
   });
 }
