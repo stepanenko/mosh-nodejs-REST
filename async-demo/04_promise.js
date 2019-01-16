@@ -10,7 +10,10 @@ console.log('before');
 //   });
 // });
 const user = getUser(1)
-user.then(n => console.log('User: ', n));
+user
+  .then(u => getRepos(u.gitHubUsername))
+  .then(r => getCommits(r[0]))
+  .then(c => console.log(c));
 console.log('after');
 
 
@@ -24,16 +27,18 @@ function getUser(id) {
 }
 
 
-function getRepos(username, callback) {
-  setTimeout(() => {
-    callback(['repo1', 'repo2']);
-  }, 1000);
+function getRepos(username) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(['repo1', 'repo2']);
+    }, 1000);
+  });
 }
 
-function getCommits(repo, callback) {
-  setTimeout(() => {
-    callback(['commit1', 'commit2']);
-  }, 1500);
+function getCommits(repo) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(['commit1', 'commit2']);
+    }, 1500);
+  });
 }
-
-
