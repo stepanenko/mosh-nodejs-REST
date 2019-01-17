@@ -1,12 +1,6 @@
 ## Node.js: The Complete Guide to Build RESTful APIs
 [coursehunters link](https://coursehunters.net/course/node-js-polnoe-rukovodstvo-po-sozdaniyu-restful-api)
 
-Урок 70. Replacing Callbacks with Promises 00:03:32
-
-Урок 71. Consuming Promises 00:05:32
-
-Урок 72. Creating Settled Promises 00:02:50
-
 Урок 73. Running Parallel Promises 00:06:15
 
 Урок 74. Async and Await 00:06:56
