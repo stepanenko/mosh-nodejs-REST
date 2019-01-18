@@ -1,8 +1,6 @@
 ## Node.js: The Complete Guide to Build RESTful APIs
 [coursehunters link](https://coursehunters.net/course/node-js-polnoe-rukovodstvo-po-sozdaniyu-restful-api)
 
-Урок 74. Async and Await 00:06:56
-
 Урок 75. Exercise 00:05:57
 
 Урок 76. Introducing MongoDB 00:02:01
