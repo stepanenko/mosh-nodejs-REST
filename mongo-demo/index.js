@@ -39,10 +39,15 @@ async function getCourse() {
   // nin (not in)
   // will have $ sign before (e.g. $gt)
 
+  // or
+  // and
+
   const courses = await Course
     // .find({ author: 'Mosh' })
     // .find({ price: { $gte: 10, $lte: 20 }})
-    .find({ price: { $in: [15, 20, 30]}})
+    // .find({ price: { $in: [15, 20, 30]}})
+    .find()
+    .and([ { author: 'Mosh' }, { isPublished: true } ])
     .limit(5)
     .sort({ name: 1 })
     .select({ name: 1, author: 1, _id: 0 });
