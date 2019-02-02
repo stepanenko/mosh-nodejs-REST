@@ -29,8 +29,20 @@ async function createCourse() {
 // createCourse(); // will add a new course
 
 async function getCourse() {
+  // eq (equal)
+  // ne (not equal)
+  // gt (greater than)
+  // gte (greater than or equal to)
+  // lt (less than)
+  // lte (less than or equal to)
+  // in
+  // nin (not in)
+  // will have $ sign before (e.g. $gt)
+
   const courses = await Course
-    .find({ author: 'Mosh' })
+    // .find({ author: 'Mosh' })
+    // .find({ price: { $gte: 10, $lte: 20 }})
+    .find({ price: { $in: [15, 20, 30]}})
     .limit(5)
     .sort({ name: 1 })
     .select({ name: 1, author: 1, _id: 0 });
