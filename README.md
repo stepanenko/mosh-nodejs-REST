@@ -1,24 +1,6 @@
 ## Node.js: The Complete Guide to Build RESTful APIs
 [coursehunters link](https://coursehunters.net/course/node-js-polnoe-rukovodstvo-po-sozdaniyu-restful-api)
 
-Урок 75. Exercise 00:05:57
-
-Урок 76. Introducing MongoDB 00:02:01
-
-Урок 77. Installing MongoDB on Mac 00:03:59
-
-Урок 78. Installing MongoDB on Windows 00:05:40
-
-Урок 79. Connecting to MongoDB 00:03:53
-
-Урок 80. Schemas 00:03:49
-
-Урок 81. Models 00:04:19
-
-Урок 82. Saving a Document 00:03:34
-
-Урок 83. Querying Documents 00:04:19
-
 Урок 84. Comparison Query Operators 00:05:00
 
 Урок 85. Logical Query Operators 00:02:02
