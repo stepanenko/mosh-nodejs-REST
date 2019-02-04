@@ -49,17 +49,18 @@ async function getCourse() {
     // .find()
     // .and([ { author: 'Mosh' }, { isPublished: true } ])
 
-    // starts with Mosh
+    // starts with Mosh:
     // .find({ author: /^Mosh/ })
 
-    // ends with Hamedani
+    // ends with Hamedani:
     // .find({ author: /Hamedani$/i })
 
     // contains Mosh
     .find({ author: /.*Mosh.*/i })
     .limit(5)
     .sort({ name: 1 })
-    .select({ name: 1, author: 1, _id: 0 });
+    // .select({ name: 1, author: 1, _id: 0 });
+    .countDocuments(); // 2
   console.log(courses);
 }
 
