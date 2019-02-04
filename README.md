@@ -1,12 +1,6 @@
 ## Node.js: The Complete Guide to Build RESTful APIs
 [coursehunters link](https://coursehunters.net/course/node-js-polnoe-rukovodstvo-po-sozdaniyu-restful-api)
 
-Урок 84. Comparison Query Operators 00:05:00
-
-Урок 85. Logical Query Operators 00:02:02
-
-Урок 86. Regular Expressions 00:03:21
-
 Урок 87. Counting 00:00:50
 
 Урок 88. Pagination 00:01:37
