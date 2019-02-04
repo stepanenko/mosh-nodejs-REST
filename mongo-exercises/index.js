@@ -28,12 +28,15 @@ function addCourses() {
 // addCourses(); // worked without async/await
 
 async function getCourses() {
-  const courses = await Course
+  return await Course
     .find({ isPublished: true, tags: 'backend' })
     .sort({ name: 1 })
     .select({ name: 1, author: 1, _id: 0 });
+}
 
+async function displayCourses() {
+  const courses = await getCourses(); // doesnt work without async/await
   console.log(courses);
 }
 
-getCourses(); // doesnt work without async/await
+displayCourses();

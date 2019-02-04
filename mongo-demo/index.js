@@ -57,10 +57,10 @@ async function getCourse() {
 
     // contains Mosh
     .find({ author: /.*Mosh.*/i })
-    .limit(5)
+    .limit(10)
     .sort({ name: 1 })
-    // .select({ name: 1, author: 1, _id: 0 });
-    .countDocuments(); // 2
+    .select({ name: 1, author: 1, _id: 0 });
+    // .countDocuments() // 5
   console.log(courses);
 }
 
