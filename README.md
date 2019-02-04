@@ -1,10 +1,6 @@
 ## Node.js: The Complete Guide to Build RESTful APIs
 [coursehunters link](https://coursehunters.net/course/node-js-polnoe-rukovodstvo-po-sozdaniyu-restful-api)
 
-Урок 87. Counting 00:00:50
-
-Урок 88. Pagination 00:01:37
-
 Урок 89. Exercise 1 00:07:58
 
 Урок 90. Exercise 2 00:04:35
