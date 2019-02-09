@@ -27,11 +27,20 @@ function addCourses() {
 
 // addCourses(); // worked without async/await
 
+// EXERCISE 1:
+// async function getCourses() {
+//   return await Course
+//     .find({ isPublished: true, tags: 'backend' })
+//     .sort({ name: 1 })
+//     .select({ name: 1, author: 1, _id: 0 });
+// }
+
+// EXERCISE 2:
 async function getCourses() {
   return await Course
-    .find({ isPublished: true, tags: 'backend' })
-    .sort({ name: 1 })
-    .select({ name: 1, author: 1, _id: 0 });
+    .find({ isPublished: true, tags: { $in: ['backend', 'frontend']} })
+    .sort('-price') // or .sort({ price: -1 })
+    .select({ price: 1, name: 1, author: 1, _id: 0 });
 }
 
 async function displayCourses() {
