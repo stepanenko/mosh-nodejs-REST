@@ -36,10 +36,18 @@ function addCourses() {
 // }
 
 // EXERCISE 2:
+// async function getCourses() {
+//   return await Course
+//     .find({ isPublished: true, tags: { $in: ['backend', 'frontend']} })
+//     .sort('-price') // or .sort({ price: -1 })
+//     .select({ price: 1, name: 1, author: 1, _id: 0 });
+// }
+
+// EXERCISE 3:
 async function getCourses() {
   return await Course
-    .find({ isPublished: true, tags: { $in: ['backend', 'frontend']} })
-    .sort('-price') // or .sort({ price: -1 })
+    .find({ isPublished: true })
+    .or([ { price: { $gte: 15 } }, { name: /.*by.*/i } ])
     .select({ price: 1, name: 1, author: 1, _id: 0 });
 }
 
