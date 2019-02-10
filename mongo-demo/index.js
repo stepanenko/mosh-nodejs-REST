@@ -59,9 +59,26 @@ async function getCourse() {
     .find({ author: /.*Mosh.*/i })
     .limit(10)
     .sort({ name: 1 })
-    .select({ name: 1, author: 1, _id: 0 });
+    .select({ name: 1, author: 1 });
     // .countDocuments() // 5
   console.log(courses);
 }
 
-getCourse();
+async function updateCourse() {
+  const course = await Course.findById('5c6079a3081e5f05a03ef548');
+  if (!course) return console.log('Course not found');
+
+  // course.isPublished = true;
+  // course.author = 'Brad';
+
+  course.set({
+    isPublished: false,
+    author: 'Brad'
+  });
+
+  course.save();
+  console.log(course);
+}
+
+updateCourse();
+// getCourse();
