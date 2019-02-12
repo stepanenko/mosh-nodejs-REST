@@ -17,9 +17,10 @@ const Course = mongoose.model('Course', courseSchema);
 
 async function createCourse() {
   const course = new Course({
-    name: 'Angular Course',
-    author: 'Mosh',
-    tags: ['angular', 'frontend'],
+    _id: new mongoose.Types.ObjectId, // generate proper id
+    name: 'Java',
+    author: 'Nazar',
+    tags: ['backend'],
     isPublished: false
   });
   
@@ -51,34 +52,44 @@ async function getCourse() {
 
     // starts with Mosh:
     // .find({ author: /^Mosh/ })
-
+    
     // ends with Hamedani:
     // .find({ author: /Hamedani$/i })
-
+    
     // contains Mosh
     .find({ author: /.*Mosh.*/i })
     .limit(10)
     .sort({ name: 1 })
     .select({ name: 1, author: 1 });
     // .countDocuments() // 5
-  console.log(courses);
-}
+    console.log(courses);
+  }
+// getCourse();
+
 
 async function updateCourse() {
-  const course = await Course.findById('5c6079a3081e5f05a03ef548');
+  const course = await Course.findById('5c60811b2bc8da0cbc91a0ca');
+  // If the schema of id is not of type ObjectId you cannot operate with findById()
   if (!course) return console.log('Course not found');
 
-  // course.isPublished = true;
-  // course.author = 'Brad';
+  course.isPublished = true;
+  course.author = 'Brad';
 
-  course.set({
-    isPublished: false,
-    author: 'Brad'
-  });
+  // course.set({
+  //   isPublished: false,
+  //   author: 'Brad'
+  // });
 
-  course.save();
+  // course.save();
   console.log(course);
 }
+// updateCourse();
 
-updateCourse();
-// getCourse();
+// We have these two ways of generating a valid ids:
+// If the schema of id is not of type ObjectId you cannot operate with findById()
+var id = mongoose.Types.ObjectId(); // will generate a new id
+var id2 = new mongoose.Types.ObjectId; // will also generate a new id
+// console.log(id, id2); 
+
+
+// https://stackoverflow.com/questions/17899750/how-can-i-generate-an-objectid-with-mongoose
