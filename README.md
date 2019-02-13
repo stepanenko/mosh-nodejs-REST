@@ -1,8 +1,6 @@
 ## Node.js: The Complete Guide to Build RESTful APIs
 [coursehunters link](https://coursehunters.net/course/node-js-polnoe-rukovodstvo-po-sozdaniyu-restful-api)
 
-Урок 93. Updating a Document- Update First 00:06:15
-
 Урок 94. Removing Documents 00:02:39
 
 Урок 95. Validation 00:07:00
