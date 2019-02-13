@@ -66,8 +66,8 @@ async function getCourse() {
   }
 // getCourse();
 
-
-async function updateCourse() {
+// QUERY-FIRST APPROACH:
+async function updateCourse1() {
   const course = await Course.findById('5c60811b2bc8da0cbc91a0ca');
   // If the schema of id is not of type ObjectId you cannot operate with findById()
   if (!course) return console.log('Course not found');
@@ -83,7 +83,21 @@ async function updateCourse() {
   // course.save();
   console.log(course);
 }
-// updateCourse();
+// updateCourse1();
+
+
+// UPDATE-FIRST APPROACH:
+async function updateCourse2(id) {
+  const course = await Course.findOneAndUpdate(id, {
+    $set: {
+      author: 'Jason',
+      isPublished: false
+    }
+  }, { new: true }); // without new:true will return doc before the update
+  console.log(course); 
+}
+updateCourse2('5c60811b2bc8da0cbc91a0ca');
+
 
 // We have these two ways of generating a valid ids:
 // If the schema of id is not of type ObjectId you cannot operate with findById()
