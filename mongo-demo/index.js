@@ -15,11 +15,13 @@ const courseSchema = new mongoose.Schema({
 
 const Course = mongoose.model('Course', courseSchema);
 
+// =======  CREATE  ========
+
 async function createCourse() {
   const course = new Course({
     _id: new mongoose.Types.ObjectId, // generate proper id
     name: 'Java',
-    author: 'Nazar',
+    author: 'Brandy',
     tags: ['backend'],
     isPublished: false
   });
@@ -28,6 +30,15 @@ async function createCourse() {
   console.log(result);
 }
 // createCourse(); // will add a new course
+
+// We have these two ways of generating a valid ids:
+// If the schema of id is not of type ObjectId you cannot operate with findById()
+var id = mongoose.Types.ObjectId(); // will generate a new id
+var id2 = new mongoose.Types.ObjectId; // will also generate a new id
+// console.log(id, id2); 
+// https://stackoverflow.com/questions/17899750/how-can-i-generate-an-objectid-with-mongoose
+
+// ========  READ  ========
 
 async function getCourse() {
   // eq (equal)
@@ -66,6 +77,8 @@ async function getCourse() {
   }
 // getCourse();
 
+// =======  UPDATE  ========
+
 // QUERY-FIRST APPROACH:
 async function updateCourse1() {
   const course = await Course.findById('5c60811b2bc8da0cbc91a0ca');
@@ -96,14 +109,14 @@ async function updateCourse2(id) {
   }, { new: true }); // without new:true will return doc before the update
   console.log(course); 
 }
-updateCourse2('5c60811b2bc8da0cbc91a0ca');
+// updateCourse2('5c60811b2bc8da0cbc91a0ca');
 
+// ========  DELETE  ========
 
-// We have these two ways of generating a valid ids:
-// If the schema of id is not of type ObjectId you cannot operate with findById()
-var id = mongoose.Types.ObjectId(); // will generate a new id
-var id2 = new mongoose.Types.ObjectId; // will also generate a new id
-// console.log(id, id2); 
+async function deleteCourse() {
+  // const result = await Course.deleteOne({ _id: '5c6079a3081e5f05a03ef548' });
+  const result = await Course.deleteOne({ author: 'Brandy' });
 
-
-// https://stackoverflow.com/questions/17899750/how-can-i-generate-an-objectid-with-mongoose
+  console.log(result);
+}
+deleteCourse();
