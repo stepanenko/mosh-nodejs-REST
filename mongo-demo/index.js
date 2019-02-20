@@ -115,8 +115,9 @@ async function updateCourse2(id) {
 
 async function deleteCourse() {
   // const result = await Course.deleteOne({ _id: '5c6079a3081e5f05a03ef548' });
-  const result = await Course.deleteOne({ author: 'Brandy' });
+  // const result = await Course.deleteOne({ author: 'Brandy' });
+  const course = await Course.findByIdAndRemove('5a68fe2142ae6a6482c4c9cb');
 
-  console.log(result);
+  console.log(course); // will return Null if the course is not found
 }
 deleteCourse();
