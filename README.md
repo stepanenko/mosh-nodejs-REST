@@ -1,6 +1,6 @@
 # Node.js: [The Complete Guide to Build RESTful APIs](https://coursehunters.net/course/node-js-polnoe-rukovodstvo-po-sozdaniyu-restful-api)
 
-#### by Mosh Hamedani
+### by Mosh Hamedani
 
 Урок 95. Validation 00:07:00
 
