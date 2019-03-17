@@ -2,8 +2,6 @@
 
 ### by Mosh Hamedani
 
-Урок 95. Validation 00:07:00
-
 Урок 96. Built-In Validators 00:04:56
 
 Урок 97. Custom Validators 00:03:17
