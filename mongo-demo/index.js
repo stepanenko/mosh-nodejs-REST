@@ -6,7 +6,7 @@ mongoose.connect('mongodb://rest:rest25@ds046667.mlab.com:46667/mosh-rest', { us
   .catch((error) => console.error('Couldnt connect to mongoDB...', error));
 
 const courseSchema = new mongoose.Schema({
-  name: String,
+  name: { type: String, required: true },
   author: String,
   tags: [ String ],
   date: { type: Date, default: Date.now },
@@ -18,16 +18,22 @@ const Course = mongoose.model('Course', courseSchema);
 async function createCourse() {
   const course = new Course({
     _id: new mongoose.Types.ObjectId, // generate proper id
-    name: 'Java',
-    author: 'Nazar',
+    // name: 'Java',
+    author: 'Ostap',
     tags: ['backend'],
     isPublished: false
   });
-  
-  const result = await course.save();
-  console.log(result);
+
+  try {
+    const result = await course.save();
+    console.log(result);
+    // await course.validate(); // works but returns void promise
+  }
+  catch (error) {
+    console.log(error.message);
+  }
 }
-// createCourse(); // will add a new course
+createCourse(); // will add a new course
 
 async function getCourse() {
   // eq (equal)
@@ -96,7 +102,7 @@ async function updateCourse2(id) {
   }, { new: true }); // without new:true will return doc before the update
   console.log(course); 
 }
-updateCourse2('5c60811b2bc8da0cbc91a0ca');
+// updateCourse2('5c60811b2bc8da0cbc91a0ca');
 
 
 // We have these two ways of generating a valid ids:
