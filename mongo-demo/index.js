@@ -6,11 +6,28 @@ mongoose.connect('mongodb://rest:rest25@ds046667.mlab.com:46667/mosh-rest', { us
   .catch((error) => console.error('Couldnt connect to mongoDB...', error));
 
 const courseSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  name: {
+    type: String,
+    required: true,
+    minlength: 3,
+    maxlength: 32,
+    // match: /pattern/
+  },
+  category: {
+    type: String,
+    required: true,
+    enum: ['web', 'mobile', 'network']
+  },
   author: String,
   tags: [ String ],
   date: { type: Date, default: Date.now },
-  isPublished: Boolean
+  isPublished: Boolean,
+  price: {
+    type: Number,
+    required: function() { return this.isPublished; },
+    min: 5,
+    max: 160
+  }
 });
 
 const Course = mongoose.model('Course', courseSchema);
@@ -20,10 +37,12 @@ const Course = mongoose.model('Course', courseSchema);
 async function createCourse() {
   const course = new Course({
     _id: new mongoose.Types.ObjectId, // generate proper id
-    // name: 'Java',
-    author: 'Ostap',
-    tags: ['backend'],
-    isPublished: false
+    name: 'CSS',
+    author: 'Sara',
+    tags: ['frontend'],
+    category: 'web',
+    isPublished: true,
+    price: 9
   });
 
   try {
@@ -126,4 +145,4 @@ async function deleteCourse() {
 
   console.log(course); // will return Null if the course is not found
 }
-deleteCourse();
+// deleteCourse();
