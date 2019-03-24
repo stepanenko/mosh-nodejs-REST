@@ -3,8 +3,6 @@
 ### by Mosh Hamedani
 Duration: 15:06
 
-Урок 96. Built-In Validators 00:04:56
-
 Урок 97. Custom Validators 00:03:17
 
 Урок 98. Async Validators 00:02:36
