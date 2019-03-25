@@ -6,7 +6,7 @@ mongoose.connect('mongodb://rest:rest25@ds046667.mlab.com:46667/mosh-rest', { us
   .catch((error) => console.error('Couldnt connect to mongoDB...', error));
 
 const courseSchema = new mongoose.Schema({
-  name: {
+  name: {          // built-in validators:
     type: String,
     required: true,
     minlength: 3,
@@ -30,7 +30,7 @@ const courseSchema = new mongoose.Schema({
   },
   date: { type: Date, default: Date.now },
   isPublished: Boolean,
-  price: {
+  price: {             // built-in validators:
     type: Number,
     required: function() { return this.isPublished; },
     min: 5,
