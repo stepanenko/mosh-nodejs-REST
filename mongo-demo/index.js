@@ -19,7 +19,15 @@ const courseSchema = new mongoose.Schema({
     enum: ['web', 'mobile', 'network']
   },
   author: String,
-  tags: [ String ],
+  tags: {
+    type: Array,
+    validate: {
+      validator: function(v) {
+        return v && v.length > 0;
+      },
+      message: 'A course should have at least one tag.'
+    }
+  },
   date: { type: Date, default: Date.now },
   isPublished: Boolean,
   price: {
@@ -39,7 +47,7 @@ async function createCourse() {
     _id: new mongoose.Types.ObjectId, // generate proper id
     name: 'CSS',
     author: 'Sara',
-    tags: ['frontend'],
+    tags: null,
     category: 'web',
     isPublished: true,
     price: 9
