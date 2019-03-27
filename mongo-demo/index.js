@@ -53,7 +53,7 @@ async function createCourse() {
     name: 'CSS',
     author: 'Sara',
     tags: null,
-    category: 'web',
+    category: '-',
     isPublished: true,
     price: 9
   });
@@ -63,8 +63,10 @@ async function createCourse() {
     console.log(result);
     // await course.validate(); // works but returns void promise
   }
-  catch (error) {
-    console.log(error.message);
+  catch (ex) {
+    for (field in ex.errors) {
+      console.log(ex.errors[field]);
+    }
   }
 }
 createCourse(); // will add a new course
