@@ -3,8 +3,6 @@
 ### by Mosh Hamedani
 Duration: 15:06
 
-Урок 99. Validation Errors 00:03:38
-
 Урок 100. SchemaType Options 00:05:57
 
 Урок 101. Project- Add Persistence to Genres API 00:14:06
