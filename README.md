@@ -3,8 +3,6 @@
 ### by Mosh Hamedani
 Duration: 15:06
 
-Урок 98. Async Validators 00:02:36
-
 Урок 99. Validation Errors 00:03:38
 
 Урок 100. SchemaType Options 00:05:57
