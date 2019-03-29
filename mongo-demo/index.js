@@ -53,12 +53,12 @@ const Course = mongoose.model('Course', courseSchema);
 async function createCourse() {
   const course = new Course({
     _id: new mongoose.Types.ObjectId, // generate proper id
-    name: 'CSS',
-    author: 'Sara',
-    tags: null,
-    category: '-',
+    name: 'CSS 3',
+    author: 'Jimmy',
+    tags: 'frontend',
+    category: ' WEB',
     isPublished: true,
-    price: 9
+    price: 13
   });
 
   try {
