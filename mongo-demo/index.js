@@ -121,7 +121,7 @@ async function getCourse() {
     // .countDocuments() // 5
     console.log(courses);
   }
-// getCourse();
+getCourse();
 
 // =======  UPDATE  ========
 
