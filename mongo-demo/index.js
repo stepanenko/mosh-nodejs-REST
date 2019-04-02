@@ -42,7 +42,9 @@ const courseSchema = new mongoose.Schema({
     type: Number,
     required: function() { return this.isPublished; },
     min: 5,
-    max: 160
+    max: 160,
+    get: v => Math.round(v),
+    set: v => Math.round(v)
   }
 });
 
@@ -53,12 +55,12 @@ const Course = mongoose.model('Course', courseSchema);
 async function createCourse() {
   const course = new Course({
     _id: new mongoose.Types.ObjectId, // generate proper id
-    name: 'CSS 3',
-    author: 'Jimmy',
+    name: 'Ruby',
+    author: 'Tania',
     tags: 'frontend',
-    category: ' WEB',
+    category: ' WeB',
     isPublished: true,
-    price: 13
+    price: 15.8
   });
 
   try {
