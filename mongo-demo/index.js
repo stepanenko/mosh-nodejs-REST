@@ -117,9 +117,9 @@ async function getCourse() {
     // .find({ author: /.*Mosh.*/i })
     .limit(10)
     .sort({ name: 1 })
-    .select({ name: 1, author: 1 });
+    .select({ price: 1, name: 1, author: 1 });
     // .countDocuments() // 5
-    console.log(courses);
+    console.log(courses[0].price);
   }
 getCourse();
 
