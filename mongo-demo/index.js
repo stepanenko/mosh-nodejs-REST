@@ -74,7 +74,7 @@ async function createCourse() {
     }
   }
 }
-createCourse(); // will add a new course
+// createCourse(); // will add a new course
 
 // We have these two ways of generating a valid ids:
 // If the schema of id is not of type ObjectId you cannot operate with findById()
@@ -100,6 +100,7 @@ async function getCourse() {
   // and
 
   const courses = await Course
+    .find({ _id: '5ca34c56099db723181e7043' })
     // .find({ author: 'Mosh' })
     // .find({ price: { $gte: 10, $lte: 20 }})
     // .find({ price: { $in: [15, 20, 30]}})
@@ -113,7 +114,7 @@ async function getCourse() {
     // .find({ author: /Hamedani$/i })
     
     // contains Mosh
-    .find({ author: /.*Mosh.*/i })
+    // .find({ author: /.*Mosh.*/i })
     .limit(10)
     .sort({ name: 1 })
     .select({ name: 1, author: 1 });
