@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://rest:rest25@ds046667.mlab.com:46667/mosh-rest', { useNewUrlParser: true })
   .then(() => console.log('Connected to mLab...'))
-  .catch(err => console.error('Couldnt connect to mLab...', err));
+  .catch(error => console.error('Couldnt connect to mLab...', error));
 
 let genres = [
   { id: 1, name: 'Thriller' },
