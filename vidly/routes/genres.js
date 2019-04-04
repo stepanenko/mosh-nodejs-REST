@@ -2,6 +2,11 @@
 const Joi = require('joi');
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://rest:rest25@ds046667.mlab.com:46667/mosh-rest', { useNewUrlParser: true })
+  .then(() => console.log('Connected to mLab...'))
+  .catch(err => console.error('Couldnt connect to mLab...', err));
 
 let genres = [
   { id: 1, name: 'Thriller' },
