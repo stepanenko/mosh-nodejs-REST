@@ -5,6 +5,7 @@ const debug = require('debug')('server');
 const genres = require('./routes/genres');
 const home = require('./routes/home');
 const helmet = require('helmet');
+const mongoose = require('mongoose');
 
 const app = express();
 
@@ -26,6 +27,18 @@ app.use('/api/genres', genres);
 
 app.get('/', (req, res) => {
   res.send('Welcome to Vidly API');
+});
+
+mongoose.connect('mongodb://rest:rest25@ds046667.mlab.com:46667/mosh-rest', { useNewUrlParser: true })
+  .then(() => console.log('Connected to mLab...'))
+  .catch(error => console.error('Couldn connect to mLab', error);
+         
+const genreSchema = mongoose.Schema({
+  name: {
+    type: 'String',
+    required: true,
+    minlength: 3
+  }
 });
 
 const port = process.env.PORT || 3000;
