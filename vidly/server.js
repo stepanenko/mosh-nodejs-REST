@@ -43,6 +43,14 @@ const genreSchema = mongoose.Schema({
 
 const Genre = new mongoose.model('Genre', genreSchema);
 
+async function createGenre() {
+  const genre = new Genre({
+    _id: new mongoose.Types.ObjectId(),
+    name: 'Comedy'
+  });
+  
+  
+  
 
 
 const port = process.env.PORT || 3000;
