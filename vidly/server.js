@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
 
 mongoose.connect('mongodb://rest:rest25@ds046667.mlab.com:46667/mosh-rest', { useNewUrlParser: true })
   .then(() => console.log('Connected to mLab...'))
-  .catch(error => console.error('Couldn connect to mLab', error);
+  .catch(error => console.error('Couldn connect to mLab', error));
          
 const genreSchema = mongoose.Schema({
   name: {
@@ -46,12 +46,12 @@ const Genre = new mongoose.model('Genre', genreSchema);
 async function createGenre() {
   const genre = new Genre({
     _id: new mongoose.Types.ObjectId(),
-    name: 'Comedy'
+    name: 'Detective'
   });
   
-  const result = genre.save();
+  const result = await genre.save();
   console.log(result);
-});
+};
   
 createGenre();
 

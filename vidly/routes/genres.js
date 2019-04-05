@@ -4,16 +4,11 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://rest:rest25@ds046667.mlab.com:46667/mosh-rest', { useNewUrlParser: true })
-  .then(() => console.log('Connected to mLab...'))
-  .catch(error => console.error('Couldnt connect to mLab...', error));
-
 let genres = [
   { id: 1, name: 'Thriller' },
   { id: 2, name: 'Action' },
   { id: 3, name: 'Drama' }
 ];
-
 
 router.get('/', (req, res) => {
   res.send(genres);
