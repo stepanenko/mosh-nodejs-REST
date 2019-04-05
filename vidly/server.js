@@ -49,9 +49,11 @@ async function createGenre() {
     name: 'Comedy'
   });
   
+  const result = genre.save();
+  console.log(result);
+});
   
-  
-
+createGenre();
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
