@@ -3,7 +3,7 @@
 ### by Mosh Hamedani
 Duration: 15:06
 
-Урок 101. Project- Add Persistence to Genres API 00:14:06
+Current -> Урок 101. Project- Add Persistence to Genres API 00:14:06
 
 Урок 102. Project- Build the Customers API 00:07:00
 
