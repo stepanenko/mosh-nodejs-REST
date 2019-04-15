@@ -32,6 +32,16 @@ async function createGenre() {
   
 // createGenre();
 
+async function getGenres() {
+  const genres = await Genre
+    .find()
+    .select({ name: 1, _id: 0 });
+
+  console.log(genres);
+}
+
+getGenres();
+
 router.get('/', (req, res) => {
   res.send(genres);
 });
