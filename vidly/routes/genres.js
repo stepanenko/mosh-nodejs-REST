@@ -10,6 +10,28 @@ let genres = [
   { id: 3, name: 'Drama' }
 ];
 
+const genreSchema = mongoose.Schema({
+  name: {
+    type: 'String',
+    required: true,
+    minlength: 3
+  }
+});
+
+const Genre = new mongoose.model('Genre', genreSchema);
+
+async function createGenre() {
+  const genre = new Genre({
+    _id: new mongoose.Types.ObjectId(),
+    name: 'Detective'
+  });
+  
+  const result = await genre.save();
+  console.log(result);
+};
+  
+// createGenre();
+
 router.get('/', (req, res) => {
   res.send(genres);
 });
