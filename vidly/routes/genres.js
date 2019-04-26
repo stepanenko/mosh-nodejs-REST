@@ -28,7 +28,6 @@ async function createGenre() {
   const result = await genre.save();
   console.log(result);
 };
-  
 // createGenre();
 
 async function getGenres() {
@@ -38,10 +37,11 @@ async function getGenres() {
 
   console.log(genres);
 }
+// getGenres();
 
-getGenres();
-
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+  const genres = Genre.find().sort('name');
+  
   res.send(genres);
 });
 
