@@ -40,7 +40,7 @@ async function getGenres() {
 // getGenres();
 
 router.get('/', async (req, res) => {
-  const genres = Genre.find().sort('name');
+  const genres = await Genre.find().sort('name');
   
   res.send(genres);
 });
