@@ -17,7 +17,7 @@ const Genre = new mongoose.model('Genre', new mongoose.Schema({
     minlength: 3,
     maxlength: 30
   }
-});
+}));
 
 async function createGenre() {
   const genre = new Genre({
