@@ -10,15 +10,14 @@ let genres = [
   { id: 3, name: 'Drama' }
 ];
 
-const genreSchema = mongoose.Schema({
+const Genre = new mongoose.model('Genre', new mongoose.Schema({
   name: {
     type: 'String',
     required: true,
-    minlength: 3
+    minlength: 3,
+    maxlength: 30
   }
 });
-
-const Genre = new mongoose.model('Genre', genreSchema);
 
 async function createGenre() {
   const genre = new Genre({
