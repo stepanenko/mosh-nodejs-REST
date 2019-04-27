@@ -41,19 +41,26 @@ async function getGenres() {
 
 router.get('/', async (req, res) => {
   const genres = await Genre
-  .find()
-  .select({ _id: 0, __v: 0 }) // will hide id and v
-  .sort('name');
+    .find()
+    .select({ __v: 0 }) // will hide id and v
+    .sort('name');
   
   res.send(genres);
 });
 
-router.get('/:id', (req, res) => {
-  const genre = genres.find(g => g.id === parseInt(req.params.id));
+router.get('/:id', async (req, res) => {
+  
+  try {
+    const genre = await Genre
+      .find({ _id: req.params.id });
+    console.log(genre);
+    res.send(genre);
+  }
+  catch (err) {
+    console.log(err.message);
+    res.send(err.message);
+  }
 
-  if (!genre) return res.status(404).send('Such genre was not found');
-
-  res.send(genre);
 });
 
 router.post('/', (req, res) => {
