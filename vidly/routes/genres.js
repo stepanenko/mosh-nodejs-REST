@@ -45,25 +45,17 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
+  let genre;
   try {
-    const genre = await Genre.findById(req.params.id);
-    console.log(genre);
-    res.send(genre);
+    genre = await Genre.findById(req.params.id);
   }
   catch {
-    res.status(404).send('Such genre was not found');
+    console.log('Oops, some error occured...');
   }
+  if (!genre) return res.status(404).send('Such genre was not found');
 
-  // try {
-  //   const genre = await Genre
-  //     .find({ _id: req.params.id });
-  //   console.log(genre);
-  //   res.send(genre);
-  // }
-  // catch (err) {
-  //   console.log(err.message);
-  //   res.send(err.message);
-  // }
+  console.log(genre);
+  res.send(genre);
 });
 
 // =====  CREATE  =====
@@ -77,10 +69,10 @@ router.post('/', async (req, res) => {
     name: req.body.name
   });
 
-  const result = await genre.save();
-  console.log(result);
+  const newGenre = await genre.save();
+  console.log(newGenre);
 
-  res.send(result);
+  res.send(newGenre);
 });
 
 // =====  UPDATE  =====
@@ -91,7 +83,7 @@ router.put('/:id', async (req, res) => {
     genre = await Genre.findById(req.params.id);
   }
   catch {
-    console.log('Such genre was not found');
+    console.log('Oops, some error occured...');
   }
   if (!genre) return res.status(404).send('Such genre was not found');
 
