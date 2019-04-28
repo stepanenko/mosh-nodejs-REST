@@ -139,7 +139,7 @@ async function updateCourse1() {
   //   author: 'Brad'
   // });
 
-  // course.save();
+  course.save();
   console.log(course);
 }
 // updateCourse1();

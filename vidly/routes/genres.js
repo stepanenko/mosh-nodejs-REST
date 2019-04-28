@@ -72,8 +72,8 @@ router.post('/', async (req, res) => {
   res.send(result);
 });
 
-router.put('/:id', (req, res) => {
-  const genre = genres.find(g => g.id === parseInt(req.params.id));
+router.put('/:id', async (req, res) => {
+  const genre = await Genre.findById(req.params.id);
 
   if (!genre) return res.status(404).send('Such genre was not found');
 
@@ -82,6 +82,8 @@ router.put('/:id', (req, res) => {
   
   genre.name = req.body.name;
 
+  genre.save();
+  console.log(genre);
   res.send(genre);
 });
 
