@@ -36,25 +36,32 @@ async function getGenres() {
 router.get('/', async (req, res) => {
   const genres = await Genre
     .find()
-    .select({ __v: 0 }) // will hide '__v' field
+    // .select({ __v: 0 }) // will hide '__v' field
     .sort('name');
   
   res.send(genres);
 });
 
 router.get('/:id', async (req, res) => {
-
   try {
-    const genre = await Genre
-      .find({ _id: req.params.id });
+    const genre = await Genre.findById(req.params.id);
     console.log(genre);
     res.send(genre);
   }
-  catch (err) {
-    console.log(err.message);
-    res.send(err.message);
+  catch {
+    res.status(404).send('Such genre was not found');
   }
 
+  // try {
+  //   const genre = await Genre
+  //     .find({ _id: req.params.id });
+  //   console.log(genre);
+  //   res.send(genre);
+  // }
+  // catch (err) {
+  //   console.log(err.message);
+  //   res.send(err.message);
+  // }
 });
 
 router.post('/', async (req, res) => {
@@ -74,7 +81,6 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   const genre = await Genre.findById(req.params.id);
-
   if (!genre) return res.status(404).send('Such genre was not found');
 
   const { error } = validate(req.body);
@@ -89,7 +95,6 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', (req, res) => {
   const genre = genres.find(g => g.id === parseInt(req.params.id));
-
   if (!genre) return res.status(404).send('Such genre was not found');
 
   genres = genres.filter(g => g !== genre);
