@@ -80,7 +80,13 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
-  const genre = await Genre.findById(req.params.id);
+  let genre;
+  try {
+    genre = await Genre.findById(req.params.id);
+  }
+  catch {
+    console.log('Such genre was not found');
+  }
   if (!genre) return res.status(404).send('Such genre was not found');
 
   const { error } = validate(req.body);
