@@ -33,6 +33,8 @@ async function getGenres() {
 }
 // getGenres();
 
+// =====  READ  ===== 
+
 router.get('/', async (req, res) => {
   const genres = await Genre
     .find()
@@ -64,6 +66,8 @@ router.get('/:id', async (req, res) => {
   // }
 });
 
+// =====  CREATE  =====
+
 router.post('/', async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
@@ -78,6 +82,8 @@ router.post('/', async (req, res) => {
 
   res.send(result);
 });
+
+// =====  UPDATE  =====
 
 router.put('/:id', async (req, res) => {
   let genre;
@@ -99,14 +105,21 @@ router.put('/:id', async (req, res) => {
   res.send(genre);
 });
 
-router.delete('/:id', (req, res) => {
-  const genre = genres.find(g => g.id === parseInt(req.params.id));
-  if (!genre) return res.status(404).send('Such genre was not found');
+// =====  DELETE  =====
 
-  genres = genres.filter(g => g !== genre);
+router.delete('/:id', async (req, res) => {
+  const genre = await Genre.findByIdAndDelete(req.params.id);
 
+  if (!genre) {
+    console.log(`Genre with id '${req.params.id}' was not found`);
+    return res.status(404).send(`Genre with id '${req.params.id}' was not found`);
+  }
+
+  console.log(`Genre '${genre.name}' was removed`);
   res.send(genre);
 });
+
+// ===== VALIDATION  =====
 
 function validate(body) {
   const schema = {
