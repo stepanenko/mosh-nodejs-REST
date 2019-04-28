@@ -4,12 +4,6 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
-let genres = [
-  { id: 1, name: 'Thriller' },
-  { id: 2, name: 'Action' },
-  { id: 3, name: 'Drama' }
-];
-
 const Genre = new mongoose.model('Genre', new mongoose.Schema({
   name: {
     type: 'String',
@@ -42,14 +36,14 @@ async function getGenres() {
 router.get('/', async (req, res) => {
   const genres = await Genre
     .find()
-    .select({ __v: 0 }) // will hide id and v
+    .select({ __v: 0 }) // will hide '__v' field
     .sort('name');
   
   res.send(genres);
 });
 
 router.get('/:id', async (req, res) => {
-  
+
   try {
     const genre = await Genre
       .find({ _id: req.params.id });
