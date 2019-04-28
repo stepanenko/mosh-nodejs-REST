@@ -57,18 +57,19 @@ router.get('/:id', async (req, res) => {
 
 });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  const newGenre = {
-    id: genres.length + 1,
+  const genre = new Genre({
+    _id: new mongoose.Types.ObjectId,
     name: req.body.name
-  }
+  });
 
-  genres = [...genres, newGenre];
+  const result = await genre.save();
+  console.log(result);
 
-  res.send(newGenre);
+  res.send(result);
 });
 
 router.put('/:id', (req, res) => {
@@ -96,7 +97,7 @@ router.delete('/:id', (req, res) => {
 
 function validate(body) {
   const schema = {
-    name: Joi.string().min(2).required()
+    name: Joi.string().min(3).required()
   }
 
   return Joi.validate(body, schema);
