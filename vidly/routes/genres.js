@@ -13,26 +13,6 @@ const Genre = new mongoose.model('Genre', new mongoose.Schema({
   }
 }));
 
-async function createGenre() {
-  const genre = new Genre({
-    _id: new mongoose.Types.ObjectId(),
-    name: 'Detective'
-  });
-  
-  const result = await genre.save();
-  console.log(result);
-};
-// createGenre();
-
-async function getGenres() {
-  const genres = await Genre
-    .find()
-    .select({ name: 1, _id: 0 });
-
-  console.log(genres);
-}
-// getGenres();
-
 // =====  READ  ===== 
 
 router.get('/', async (req, res) => {
