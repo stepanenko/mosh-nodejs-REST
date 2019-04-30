@@ -44,15 +44,15 @@ router.post('/', async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  const genre = new Genre({
+  let genre = new Genre({
     _id: new mongoose.Types.ObjectId,
     name: req.body.name
   });
 
-  const newGenre = await genre.save();
-  console.log(newGenre);
+  genre = await genre.save();
+  console.log(genre);
 
-  res.send(newGenre);
+  res.send(genre);
 });
 
 // =====  UPDATE  =====
