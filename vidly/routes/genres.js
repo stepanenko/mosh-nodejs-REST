@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
-const Genre = new mongoose.model('Genre', new mongoose.Schema({
+const Genre = mongoose.model('Genre', new mongoose.Schema({
   name: {
     type: 'String',
     required: true,
@@ -61,19 +61,32 @@ router.put('/:id', async (req, res) => {
   const { error } = validateGenre(req.body);
   if (error) return res.status(400).send(error.details[0].message);
   
-  // Query-First Approach (my version):
+  // === Query-First Approach (my version): ===
+  // let genre;
+  // try {
+  //   genre = await Genre.findById(req.params.id);
+  // }
+  // catch {
+  //   console.log('Oops, some error occured... Not found');
+  // }
+  // if (!genre) return res.status(404).send('Such genre was not found');
+  // genre.name = req.body.name;
+  // genre.save();
+
+  // === Update-First Approach (Mosh's version): ===
   let genre;
   try {
-    genre = await Genre.findById(req.params.id);
+    genre = await Genre.findByIdAndUpdate(
+      req.params.id,
+      { name: req.body.name },
+      { new: true }
+    );
   }
-  catch {
-    console.log('Oops, some error occured...');
+  catch(err) {
+    console.log('Error:', err.message);
   }
   if (!genre) return res.status(404).send('Such genre was not found');
-  genre.name = req.body.name;
-  genre.save();
 
-  
   console.log(genre);
   res.send(genre);
 });
