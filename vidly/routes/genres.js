@@ -41,7 +41,7 @@ router.get('/:id', async (req, res) => {
 // =====  CREATE  =====
 
 router.post('/', async (req, res) => {
-  const { error } = validate(req.body);
+  const { error } = validateGenre(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
   let genre = new Genre({
@@ -58,6 +58,10 @@ router.post('/', async (req, res) => {
 // =====  UPDATE  =====
 
 router.put('/:id', async (req, res) => {
+  const { error } = validateGenre(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
+  
+  // Query-First Approach (my version):
   let genre;
   try {
     genre = await Genre.findById(req.params.id);
@@ -66,13 +70,10 @@ router.put('/:id', async (req, res) => {
     console.log('Oops, some error occured...');
   }
   if (!genre) return res.status(404).send('Such genre was not found');
-
-  const { error } = validate(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
-  
   genre.name = req.body.name;
-
   genre.save();
+
+  
   console.log(genre);
   res.send(genre);
 });
@@ -93,7 +94,7 @@ router.delete('/:id', async (req, res) => {
 
 // ===== VALIDATION  =====
 
-function validate(body) {
+function validateGenre(body) {
   const schema = {
     name: Joi.string().min(3).required()
   }
