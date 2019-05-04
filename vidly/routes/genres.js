@@ -13,6 +13,25 @@ const Genre = mongoose.model('Genre', new mongoose.Schema({
   }
 }));
 
+
+// =====  CREATE  =====
+
+router.post('/', async (req, res) => {
+  const { error } = validateGenre(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
+
+  let genre = new Genre({
+    _id: new mongoose.Types.ObjectId,
+    name: req.body.name
+  });
+
+  genre = await genre.save();
+  console.log(genre);
+
+  res.send(genre);
+});
+
+
 // =====  READ  ===== 
 
 router.get('/', async (req, res) => {
@@ -38,22 +57,6 @@ router.get('/:id', async (req, res) => {
   res.send(genre);
 });
 
-// =====  CREATE  =====
-
-router.post('/', async (req, res) => {
-  const { error } = validateGenre(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
-
-  let genre = new Genre({
-    _id: new mongoose.Types.ObjectId,
-    name: req.body.name
-  });
-
-  genre = await genre.save();
-  console.log(genre);
-
-  res.send(genre);
-});
 
 // =====  UPDATE  =====
 
@@ -91,6 +94,7 @@ router.put('/:id', async (req, res) => {
   res.send(genre);
 });
 
+
 // =====  DELETE  =====
 
 router.delete('/:id', async (req, res) => {
@@ -105,6 +109,7 @@ router.delete('/:id', async (req, res) => {
   res.send(genre);
 });
 
+
 // ===== VALIDATION  =====
 
 function validateGenre(body) {
@@ -114,5 +119,6 @@ function validateGenre(body) {
 
   return Joi.validate(body, schema);
 }
+
 
 module.exports = router;
