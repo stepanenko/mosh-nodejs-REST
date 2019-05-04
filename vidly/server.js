@@ -3,6 +3,7 @@ const express = require('express');
 const myMiddleware = require('./middleware/myMiddleware');
 const debug = require('debug')('server');
 const genres = require('./routes/genres');
+const customers = require('./routes/customers');
 const home = require('./routes/home');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
@@ -24,6 +25,7 @@ app.use(function(req, res, next) {
 app.use(myMiddleware);
 app.use('/', home);
 app.use('/api/genres', genres);
+app.use('/api/customers', customers);
 
 app.get('/', (req, res) => {
   res.send('Welcome to Vidly API');
