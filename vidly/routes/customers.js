@@ -33,5 +33,22 @@ router.get('/', async (req, res) => {
   res.send(customers);
 });
 
+// === UPDATE ===
+router.put('/:id', async (req, res) => {
+  let customer;
+  try {
+    customer = await Customer.findById(req.params.id);
+  }
+  catch {
+    console.log('Customer was not found');
+  }
+  if (!customer) return res.status(404).send('Customer was not found');
+
+  customer.name = req.body.name;
+  customer = await customer.save();
+
+  res.send(customer);
+  console.log(customer, '<- updated successfuly');
+});
 
 module.exports = router;
