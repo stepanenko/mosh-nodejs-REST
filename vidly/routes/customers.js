@@ -33,6 +33,20 @@ router.get('/', async (req, res) => {
   res.send(customers);
 });
 
+router.get('/:id', async (req, res) => {
+  let customer;
+  try {
+    customer = await Customer.findById(req.params.id);
+  }
+  catch {
+    console.log('Not found');
+  }
+  if (!customer) return res.status(404).send('Customer was not found');
+  
+  console.log(customer);
+  res.send(customer);
+});
+
 // === UPDATE ===
 router.put('/:id', async (req, res) => {
   let customer;
