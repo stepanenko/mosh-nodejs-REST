@@ -21,8 +21,8 @@ router.post('/', async (req, res) => {
   });
 
   customer = await customer.save();
-  console.log(customer);
 
+  console.log(customer, '<- created');
   res.send(customer);
 });
 
@@ -63,6 +63,23 @@ router.put('/:id', async (req, res) => {
 
   res.send(customer);
   console.log(customer, '<- updated successfuly');
+});
+
+
+// === DELETE ===
+router.delete('/:id', async (req, res) => {
+  let customer;
+  try {
+    customer = await Customer.findByIdAndDelete(req.params.id);
+  }
+  catch {
+    console.log('Cant find such customer');
+  }
+
+  if (!customer) return res.status(404).send('Cant be found');
+
+  console.log(customer, '<- deleted');
+  res.send(customer);
 });
 
 module.exports = router;
