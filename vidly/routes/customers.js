@@ -13,7 +13,8 @@ const Customer = mongoose.model('Customer', new mongoose.Schema({
   }
 }));
 
-// === CREATE ===
+// ===  CREATE  ===
+
 router.post('/', async (req, res) => {
   let customer = new Customer({
     _id: new mongoose.Types.ObjectId,
@@ -26,7 +27,8 @@ router.post('/', async (req, res) => {
   res.send(customer);
 });
 
-// === READ ===
+// ===  READ  ===
+
 router.get('/', async (req, res) => {
   const customers = await Customer.find();
 
@@ -47,7 +49,8 @@ router.get('/:id', async (req, res) => {
   res.send(customer);
 });
 
-// === UPDATE ===
+// ===  UPDATE  ===
+
 router.put('/:id', async (req, res) => {
   let customer;
   try {
@@ -65,8 +68,8 @@ router.put('/:id', async (req, res) => {
   console.log(customer, '<- updated successfuly');
 });
 
+// ===  DELETE  ===
 
-// === DELETE ===
 router.delete('/:id', async (req, res) => {
   let customer;
   try {
