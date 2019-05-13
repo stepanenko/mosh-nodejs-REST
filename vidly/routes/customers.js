@@ -5,11 +5,17 @@ const mongoose = require('mongoose');
 const Joi = require('joi');
 
 const Customer = mongoose.model('Customer', new mongoose.Schema({
+  isGold: Boolean,
   name: {
     type: String,
     required: true,
     minlength: 3,
     maxlength: 30
+  },
+  phone: {
+    type: Number,
+    minlength: 10,
+    maxlength: 12
   }
 }));
 
@@ -18,7 +24,9 @@ const Customer = mongoose.model('Customer', new mongoose.Schema({
 router.post('/', async (req, res) => {
   let customer = new Customer({
     _id: new mongoose.Types.ObjectId,
-    name: req.body.name
+    isGold: req.body.isGold,
+    name: req.body.name,
+    phone: req.body.phone
   });
 
   customer = await customer.save();
@@ -61,7 +69,11 @@ router.put('/:id', async (req, res) => {
   }
   if (!customer) return res.status(404).send('Customer was not found');
 
+  customer.isGold = req.body.isGold;
   customer.name = req.body.name;
+  customer.phone = req.body.phone;
+  customer.name = req.body.name;
+  
   customer = await customer.save();
 
   res.send(customer);
