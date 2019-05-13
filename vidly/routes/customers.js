@@ -5,7 +5,10 @@ const mongoose = require('mongoose');
 const Joi = require('joi');
 
 const Customer = mongoose.model('Customer', new mongoose.Schema({
-  isGold: Boolean,
+  isGold: {
+    type: Boolean,
+    default: false
+  },
   name: {
     type: String,
     required: true,
@@ -73,7 +76,7 @@ router.put('/:id', async (req, res) => {
   customer.name = req.body.name;
   customer.phone = req.body.phone;
   customer.name = req.body.name;
-  
+
   customer = await customer.save();
 
   res.send(customer);
