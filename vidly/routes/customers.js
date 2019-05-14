@@ -16,7 +16,7 @@ const Customer = mongoose.model('Customer', new mongoose.Schema({
     maxlength: 30
   },
   phone: {
-    type: Number,
+    type: String,
     required: true,
     minlength: 10,
     maxlength: 12
@@ -26,6 +26,9 @@ const Customer = mongoose.model('Customer', new mongoose.Schema({
 // ===  CREATE  ===
 
 router.post('/', async (req, res) => {
+  const { error } = validateCustomer(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
+
   let customer = new Customer({
     _id: new mongoose.Types.ObjectId,
     isGold: req.body.isGold,
@@ -33,7 +36,12 @@ router.post('/', async (req, res) => {
     phone: req.body.phone
   });
 
-  customer = await customer.save();
+  try {
+    customer = await customer.save();
+  }
+  catch (err) {
+    return console.log(err.message);
+  }
 
   console.log(customer, '<- created');
   res.send(customer);
@@ -104,8 +112,9 @@ router.delete('/:id', async (req, res) => {
 // ===  Validation  ===
 function validateCustomer(body) {
   const schema = {
+    isGold: Joi.boolean(),
     name: Joi.string().min(3).max(30).required(),
-    phone: Joi.number().min(10).max(12).required()
+    phone: Joi.string().min(10).max(12).required()
   }
 
   return Joi.validate(body, schema);
