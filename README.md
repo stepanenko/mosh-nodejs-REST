@@ -1,9 +1,9 @@
 # Node.js: [The Complete Guide to Build RESTful APIs](https://coursehunters.net/course/node-js-polnoe-rukovodstvo-po-sozdaniyu-restful-api)
 
 ### by Mosh Hamedani
-Duration: 15:06
+Duration:  15:06
 
-Current -> Урок 103. Restructuring the Project 00:06:15
+Current:  Урок 103. Restructuring the Project 00:06:15
 
 Урок 104. Modelling Relationships 00:07:46
 
