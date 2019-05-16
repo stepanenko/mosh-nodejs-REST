@@ -4,6 +4,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Joi = require('joi');
 
+
 const Customer = mongoose.model('Customer', new mongoose.Schema({
   isGold: {
     type: Boolean,
@@ -22,6 +23,7 @@ const Customer = mongoose.model('Customer', new mongoose.Schema({
     maxlength: 12
   }
 }));
+
 
 // ===  CREATE  ===
 
@@ -119,5 +121,6 @@ function validateCustomer(body) {
 
   return Joi.validate(body, schema);
 }
+
 
 module.exports = router;
