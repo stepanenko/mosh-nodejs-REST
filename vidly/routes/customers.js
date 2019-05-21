@@ -3,25 +3,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Joi = require('joi');
-
-const Customer = mongoose.model('Customer', new mongoose.Schema({
-  isGold: {
-    type: Boolean,
-    default: false
-  },
-  name: {
-    type: String,
-    required: true,
-    minlength: 3,
-    maxlength: 30
-  },
-  phone: {
-    type: String,
-    required: true,
-    minlength: 10,
-    maxlength: 12
-  }
-}));
+const Customer = require('../models/customer');
 
 // ===  CREATE  ===
 
