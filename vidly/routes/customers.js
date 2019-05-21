@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const Joi = require('joi');
 const Customer = require('../models/customer');
 
+
 // ===  CREATE  ===
 
 router.post('/', async (req, res) => {
@@ -101,5 +102,6 @@ function validateCustomer(body) {
 
   return Joi.validate(body, schema);
 }
+
 
 module.exports = router;

@@ -120,3 +120,5 @@ Current --> Урок 103. Restructuring the Project 00:06:15
 Урок 209. Setting Environment Variables 00:02:45
 
 Урок 210. MongoDB in the Cloud 00:08:24
+
+### Next to watch --> [Real-Time Web with Node.js](https://coursehunters.net/course/frontendmaster-real-time-web-with-node-js) ( Kyle Simpson )
