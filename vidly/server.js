@@ -31,7 +31,10 @@ app.get('/', (req, res) => {
   res.send('Welcome to Vidly API');
 });
 
-mongoose.connect('mongodb://rest:rest25@ds046667.mlab.com:46667/mosh-rest', { useNewUrlParser: true })
+mongoose.connect(
+  'mongodb://rest:rest25@ds046667.mlab.com:46667/mosh-rest',
+  { useNewUrlParser: true }
+  )
   .then(() => console.log('Connected to mLab...'))
   .catch(error => console.error('Couldn connect to mLab', error));
 
