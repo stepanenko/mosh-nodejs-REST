@@ -3,11 +3,7 @@
 ### by Mosh Hamedani
 Duration: 15:06
 
-Current --> Урок 103. Restructuring the Project 00:06:15
-
-Урок 104. Modelling Relationships 00:07:46
-
-Урок 105. Referencing Documents 00:03:52
+Current --> Урок 105. Referencing Documents 00:03:52
 
 Урок 106. Population 00:04:17
 
