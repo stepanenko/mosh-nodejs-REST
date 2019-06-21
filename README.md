@@ -3,9 +3,7 @@
 ### by Mosh Hamedani
 Duration: 15:06
 
-Current --> Урок 106. Population 00:04:17
-
-Урок 107. Embedding Documents 00:06:55
+Current --> Урок 107. Embedding Documents 00:06:55
 
 Урок 108. Using an Array of Sub-documents 00:04:32
 
