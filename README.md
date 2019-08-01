@@ -1,13 +1,9 @@
 # Node.js: [The Complete Guide to Build RESTful APIs](https://coursehunters.net/course/node-js-polnoe-rukovodstvo-po-sozdaniyu-restful-api)
 
 ### by Mosh Hamedani
-Duration: 15:06
+#### Duration: 15:06
 
-Current --> Урок 107. Embedding Documents 00:06:55
-
-Урок 108. Using an Array of Sub-documents 00:04:32
-
-Урок 109. Project- Build the Movies API 00:07:06
+Current --> 109. Project- Build the Movies API 00:07:06
 
 Урок 110. Project- Build the Rentals API 00:08:02
 
