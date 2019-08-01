@@ -1,8 +1,9 @@
 # Node.js: [The Complete Guide to Build RESTful APIs](https://coursehunters.net/course/node-js-polnoe-rukovodstvo-po-sozdaniyu-restful-api)
 
 ### by Mosh Hamedani
-#### Duration: 15:05:56
 ### Updated: 14.02.2019
+#### Duration: 15:05:56
+
 
 Current --> 109. Project- Build the Movies API 00:07:06
 
