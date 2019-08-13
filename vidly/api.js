@@ -11,10 +11,13 @@ const genreSchema = new mongoose.Schema({
 
 const movieSchema = new mongoose.Schema({
   title: String,
-  genre: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Genre'
-  },
+  // --- Doc reference: ---
+  // genre: { 
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'Genre' 
+  // },
+  // --- Doc embedding: ---
+  genre: genreSchema,
   numberInStock: Number,
   dailyRentalRate: Number
 });
@@ -31,10 +34,10 @@ async function createGenre(name) {
   console.log(result);
 }
 
-async function createMovie(title, genreId, number, rate) {
+async function createMovie(title, genre, number, rate) {
   const movie = new Movie({
     title,
-    genre: genreId,
+    genre,
     numberInStock: number,
     dailyRentalRate: rate
   });
@@ -43,11 +46,19 @@ async function createMovie(title, genreId, number, rate) {
   console.log(result);
 }
 
-async function updateMovie(id, title, genreId, rate) {
-  const movie = await Movie.findById(id);
-  movie.title = title;
-  movie.genre = genreId;
-  movie.dailyRentalRate = rate;
+// --- Updating for reference approach ---
+// async function updateMovie(id, title, genreId, rate) {
+//   const movie = await Movie.findById(id);
+//   movie.title = title;
+//   movie.genre = genreId;
+//   movie.dailyRentalRate = rate;
+//   const result = await movie.save();
+//   console.log(result);
+// }
+
+async function updateGenre(movieId, newGenreName) {
+  const movie = Movie.findById(movieId);
+  movie.genre.name = newGenreName;
   const result = await movie.save();
   console.log(result);
 }
@@ -55,13 +66,15 @@ async function updateMovie(id, title, genreId, rate) {
 async function listMovies() {
   const movies = await Movie
     .find()
-    .populate('genre', 'name -_id')
-    .select('title -_id')
+    // .populate('genre', 'name -_id') // <-- For reference approach
+    .select('title genre numberInStock dailyRentalRate -_id')
   
   console.log(movies);
 }
 
 // createGenre('Drama');
-// createMovie('Forrest Gump', '5d52b74c93c11414100f7ed0', 561, 9.1);
-// updateMovie('5d5288dc7b8249145868e3de', 'Star Wars: Rogue One', '5d52861236dccc1c909983e3', 7);
+// createMovie('Forrest Gump', '5d52b74c93c11414100f7ed0', 561, 9.1); // with ref
+// createMovie('Deception', new Genre({ name: 'Thriller' }), 221, 6.8); // with embedded
+// updateMovie('5d5288dc7b8249145868e3de', 'Star Wars: Rogue One', '5d52861236dccc1c909983e3', 7); // for reference approach
+
 listMovies();
