@@ -11,7 +11,10 @@ const genreSchema = new mongoose.Schema({
 
 const movieSchema = new mongoose.Schema({
   title: String,
-  genre: genreSchema,
+  genre: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Genre'
+  },
   numberInStock: Number,
   dailyRentalRate: Number
 });
@@ -28,10 +31,10 @@ async function createGenre(name) {
   console.log(result);
 }
 
-async function createMovie(title, genre, number, rate) {
+async function createMovie(title, genreId, number, rate) {
   const movie = new Movie({
     title,
-    genre,
+    genre: genreId,
     numberInStock: number,
     dailyRentalRate: rate
   });
@@ -40,16 +43,25 @@ async function createMovie(title, genre, number, rate) {
   console.log(result);
 }
 
-async function updateMovie(id, title, genreName, rate) {
+async function updateMovie(id, title, genreId, rate) {
   const movie = await Movie.findById(id);
   movie.title = title;
-  movie.genre.name = genreName;
+  movie.genre = genreId;
   movie.dailyRentalRate = rate;
   const result = await movie.save();
   console.log(result);
 }
 
-// createGenre('Sci-Fi');
-// createMovie('Me', new Genre({ name: 'Horror' }), 53, 6.2);
-updateMovie('5d528a1b5c69da10f4049128', 'Thor: Ragnarock', 'Sci-Fi', 9.3);
+async function listMovies() {
+  const movies = await Movie
+    .find()
+    .populate('genre', 'name -_id')
+    .select('title -_id')
+  
+  console.log(movies);
+}
 
+// createGenre('Drama');
+// createMovie('Forrest Gump', '5d52b74c93c11414100f7ed0', 561, 9.1);
+// updateMovie('5d5288dc7b8249145868e3de', 'Star Wars: Rogue One', '5d52861236dccc1c909983e3', 7);
+listMovies();
