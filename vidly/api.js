@@ -28,12 +28,27 @@ async function createGenre(name) {
   console.log(result);
 }
 
-async function createMovie(title, number, rate) {
+async function createMovie(title, genre, number, rate) {
   const movie = new Movie({
     title,
-    number,
-    rate
-  })
+    genre,
+    numberInStock: number,
+    dailyRentalRate: rate
+  });
+
+  const result = await movie.save();
+  console.log(result);
 }
 
-createGenre('Sci-Fi');
+async function updateMovie(id, title, genreName, rate) {
+  const movie = await Movie.findById(id);
+  movie.title = title;
+  movie.genre.name = genreName;
+  movie.rate = rate;
+  const result = await movie.save();
+  console.log(result);
+}
+
+// createGenre('Sci-Fi');
+createMovie('Me', new Genre({ name: 'Horror' }), 53, 6.2);
+
