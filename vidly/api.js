@@ -44,11 +44,12 @@ async function updateMovie(id, title, genreName, rate) {
   const movie = await Movie.findById(id);
   movie.title = title;
   movie.genre.name = genreName;
-  movie.rate = rate;
+  movie.dailyRentalRate = rate;
   const result = await movie.save();
   console.log(result);
 }
 
 // createGenre('Sci-Fi');
-createMovie('Me', new Genre({ name: 'Horror' }), 53, 6.2);
+// createMovie('Me', new Genre({ name: 'Horror' }), 53, 6.2);
+updateMovie('5d528a1b5c69da10f4049128', 'Thor: Ragnarock', 'Sci-Fi', 9.3);
 
