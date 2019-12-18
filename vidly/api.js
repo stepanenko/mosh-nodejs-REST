@@ -12,12 +12,12 @@ const genreSchema = new mongoose.Schema({
 const movieSchema = new mongoose.Schema({
   title: String,
   // --- Doc reference: ---
-  // genre: { 
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'Genre' 
-  // },
+  genre: { 
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Genre' 
+  },
   // --- Doc embedding: ---
-  genre: genreSchema,
+  // genre: genreSchema,
   numberInStock: Number,
   dailyRentalRate: Number
 });
@@ -66,14 +66,14 @@ async function updateGenre(movieId, newGenreName) {
 async function listMovies() {
   const movies = await Movie
     .find()
-    // .populate('genre', 'name -_id') // <-- For reference approach
-    .select('title genre numberInStock dailyRentalRate -_id')
+    .populate('genre', 'name -_id') // <-- For reference approach
+    .select('title numberInStock dailyRentalRate -_id')
   
   console.log(movies);
 }
 
 // createGenre('Drama');
-// createMovie('Forrest Gump', '5d52b74c93c11414100f7ed0', 561, 9.1); // with ref
+// createMovie('Independance Day', '5d52861236dccc1c909983e3', 441, 6.4); // with ref
 // createMovie('Deception', new Genre({ name: 'Thriller' }), 221, 6.8); // with embedded
 // updateMovie('5d5288dc7b8249145868e3de', 'Star Wars: Rogue One', '5d52861236dccc1c909983e3', 7); // for reference approach
 
