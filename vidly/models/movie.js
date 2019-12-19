@@ -1,32 +1,49 @@
 
 const mongoose = require('mongoose');
 const Joi = require('joi');
+const { genreSchema } = require('./genre');
 
-mongoose.connect('mongodb+srv://sergio:333444@stepser-komby.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true })
-  .then(() => console.log('Connected to mongoDB'))
-  .catch(err => console.error('Couldnt connect to DB'));
+// mongoose.connect('mongodb+srv://sergio:333444@stepser-komby.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true })
+//   .then(() => console.log('Connected to mongoDB'))
+//   .catch(err => console.error('Couldnt connect to DB'));
 
 
 const Movie = mongoose.model('Movie', new mongoose.Schema({
-  title: String,
-  genre: {
-    type: Object,
-    _id: new mongoose.Types.ObjectId,
-    name: String
+  title: {
+    type: String,
+    required: true,
+    minlength: 3,
+    maxlength: 255
   },
-  numberInStock: Number,
-  dailyRentalRate: Number
+  genre: {
+    type: genreSchema,
+    required: true
+  },
+  numberInStock: {
+    type: Number,
+    required: true,
+    min: 0,
+    max: 255
+  },
+  dailyRentalRate: {
+    type: Number,
+    required: true,
+    min: 0,
+    max: 255
+  }
 }));
 
-function validateMovie(body) {
+// ===== VALIDATION  =====
+
+function validateMovie(movie) {
   const schema = {
-    title: Joi.string().min(3).required(),
-    genre: Joi.object().min(2).requiredKeys('name'),
-    numberInStock: Joi.number().required(),
-    dailyRentalRate: Joi.number().required()
+    title: Joi.string().min(3).max(50).required(),
+    genreId: Joi.string().required(),
+    numberInStock: Joi.number().min(0).required(),
+    dailyRentalRate: Joi.number().min(0).required()
   }
 
-  return Joi.validate(body, schema);
+  return Joi.validate(movie, schema);
 }
 
 async function createMovie(title, genre, number, rate) {
@@ -41,7 +58,7 @@ async function createMovie(title, genre, number, rate) {
   console.log(result);
 }
 
-createMovie('Turtles', { name: 'Adventure' }, 43, 5.7);
+// createMovie('Turtles', '5dfb3bb61c9d440000ec4c6f', 113, 5.27);
 
 module.exports.validate = validateMovie;
 module.exports.Movie = Movie;

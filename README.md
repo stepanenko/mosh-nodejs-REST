@@ -4,9 +4,7 @@
 #### Duration: 15:05:56
 
 
-Current --> 109. Project- Build the Movies API 00:07:06
-
-Урок 110. Project- Build the Rentals API 00:08:02
+Current --> 110. Project- Build the Rentals API 00:08:02
 
 Урок 111. Transactions 00:08:46
 
