@@ -4,9 +4,7 @@
 #### Duration: 15:05:56
 
 
-Current --> 110. Project- Build the Rentals API 00:08:02
-
-Урок 111. Transactions 00:08:46
+Current --> 111. Transactions 00:08:46
 
 Урок 112. ObjectID 00:07:04
 
