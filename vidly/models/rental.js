@@ -66,4 +66,5 @@ function validateRental(rental) {
 
 const Rental = mongoose.model('Rental', rentalSchema);
 
-module.exports = Rental;
+module.exports.Rental = Rental;
+module.exports.validate = validateRental;
