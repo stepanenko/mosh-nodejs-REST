@@ -1,5 +1,7 @@
 
 const express = require('express');
+const Joi = require('joi');
+Joi.objectId = require('joi-objectid')(Joi);
 const myMiddleware = require('./middleware/myMiddleware');
 const debug = require('debug')('server');
 const genres = require('./routes/genres');
