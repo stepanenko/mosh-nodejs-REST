@@ -4,11 +4,7 @@
 #### Duration: 15:05:56
 
 
-Current --> 111. Transactions 00:08:46
-
-Урок 112. ObjectID 00:07:04
-
-Урок 113. Validating Object ID's 00:06:14
+Current --> 113. Validating Object ID's 00:06:14
 
 Урок 114. A Better Implementation 00:02:24
 
