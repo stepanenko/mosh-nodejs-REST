@@ -4,19 +4,7 @@
 #### Duration: 15:05:56
 
 
-Current --> 113. Validating Object ID's 00:06:14
-
-Урок 114. A Better Implementation 00:02:24
-
-Урок 115. Introduction 00:04:02
-
-Урок 116. Creating the User Model 00:03:41
-
-Урок 117. Registering Users 00:07:54
-
-Урок 118. Using Lodash 00:05:22
-
-Урок 119. Hashing Passwords 00:06:55
+Current --> 119. Hashing Passwords 00:06:55
 
 Урок 120. Authenticating Users 00:04:55
 
