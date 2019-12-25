@@ -4,11 +4,7 @@
 #### Duration: 15:05:56
 
 
-Current --> 119. Hashing Passwords 00:06:55
-
-Урок 120. Authenticating Users 00:04:55
-
-Урок 121. Testing the Authentication 00:02:43
+Current --> 121. Testing the Authentication 00:02:43
 
 Урок 122. JSON Web Tokens 00:05:05
 
