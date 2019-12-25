@@ -1,4 +1,5 @@
 
+const _ = require('lodash');
 const express = require('express');
 const router = express.Router();
 const { User, validate } = require('../models/user');
@@ -12,22 +13,16 @@ router.post('/', async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  try {
-    const user = new User({
-      name: req.body.name,
-      email: req.body.email,
-      password: req.body.password
-    });
-    await user.save();
-    res.send(user);
-  }
-  catch(ex) {
-    if (ex.code === 11000) {
-      res.status(400).send('User with such email already exist');
-    } else {
-      res.status(400).send(ex.errmsg);
-    }
-  }
+  let user = await User.findOne({ email: req.body.email });
+  if (user) return res.status(400).send('User already registered');
+
+  user = new User({
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password
+  });
+  await user.save();
+  res.send(_.pick(user, ['_id', 'name', 'email']));
 });
 
 module.exports = router;
