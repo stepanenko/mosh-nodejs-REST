@@ -4,23 +4,7 @@
 #### Duration: 15:05:56
 
 
-Current --> 121. Testing the Authentication 00:02:43
-
-Урок 122. JSON Web Tokens 00:05:05
-
-Урок 123. Generating Authentication Tokens 00:03:19
-
-Урок 124. Storing Secrets in Environment Variables 00:06:13
-
-Урок 125. Setting Response Headers 00:03:47
-
-Урок 126. Encapsulating Logic in Mongoose Models 00:07:12
-
-Урок 127. Authorization Middleware 00:06:51
-
-Урок 128. Protecting Routes 00:03:07
-
-Урок 129. Getting the Current User 00:04:04
+Current --> 129. Getting the Current User 00:04:04
 
 Урок 130. Logging Out Users 00:02:05
 
