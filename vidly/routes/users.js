@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const express = require('express');
 const router = express.Router();
 const { User, validate } = require('../models/user');
+const auth = require('../middleware/auth');
 
 router.get('/', async (req, res) => {
   const users = await User.find();
@@ -26,7 +27,7 @@ router.post('/', async (req, res) => {
   res.header('x-auth-token', token).send(_.pick(user, ['_id', 'name', 'email']));
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
   let user;
   try {
     user = await User.findByIdAndDelete(req.params.id);

@@ -1,14 +1,13 @@
 
-const express = require('express');
-const mongoose = require('mongoose');
 const router = require('express').Router();
 const { Movie, validate } = require('../models/movie');
 const { Genre } = require('../models/genre');
+const auth = require('../middleware/auth');
 
 
 // =====  CREATE  =====
 
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -34,5 +33,23 @@ router.get('/', async (req, res) => {
 
   res.send(movies);
 });
+
+// ==== DELETE ====
+
+router.delete('/:id', auth, async (req, res) => {
+  let movie;
+  try {
+    movie = await Movie.findByIdAndDelete(req.params.id);
+  }
+  catch (ex) {
+    console.log('Movie was not found.', ex.message);
+    return res.status(400).send({ error: 'Movie was not found.', message: ex.message });
+  }
+
+  if (!movie) return res.status(404).send('Such movie was not found.');
+
+  console.log(movie.title, ' <- deleted');
+  res.send(movie);  
+})
 
 module.exports = router;
