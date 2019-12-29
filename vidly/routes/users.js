@@ -1,7 +1,5 @@
 
 const _ = require('lodash');
-const config = require('config');
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const express = require('express');
 const router = express.Router();
@@ -26,6 +24,25 @@ router.post('/', async (req, res) => {
   
   const token = user.generateAuthToken();
   res.header('x-auth-token', token).send(_.pick(user, ['_id', 'name', 'email']));
+});
+
+router.delete('/:id', async (req, res) => {
+  let user;
+  try {
+    user = await User.findByIdAndDelete(req.params.id);
+  }
+  catch(ex) {
+    console.log('Invalid ID. ', ex.message);
+    return res.status(400).send('Invalid ID.');
+  }
+
+  if (!user) {
+    console.log('User was not found.');
+    return res.status(404).send('User not found.');
+  }
+
+  console.log(`User '${user.name}' was deleted`);
+  res.send(user);
 });
 
 module.exports = router;
