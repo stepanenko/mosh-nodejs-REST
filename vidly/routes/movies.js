@@ -42,14 +42,14 @@ router.delete('/:id', auth, async (req, res) => {
     movie = await Movie.findByIdAndDelete(req.params.id);
   }
   catch (ex) {
-    console.log('Movie was not found.', ex.message);
-    return res.status(400).send({ error: 'Movie was not found.', message: ex.message });
+    console.log('Invalid movie ID provided.', ex.message);
+    return res.status(400).send({ error: 'Invalid movie ID provided.', message: ex.message });
   }
 
   if (!movie) return res.status(404).send('Such movie was not found.');
 
   console.log(movie.title, ' <- deleted');
   res.send(movie);  
-})
+});
 
 module.exports = router;

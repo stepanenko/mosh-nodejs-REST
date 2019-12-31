@@ -8,11 +8,15 @@ const Fawn = require('fawn');
 
 Fawn.init(mongoose);
 
+// === READ ===
+
 router.get('/', async (req, res) => {
   const rentals = await Rental.find().sort('-dateOut');
   console.log(rentals);
   res.send(rentals);
 });
+
+// === CREATE ===
 
 router.post('/', async (req, res) => {
   const { error } = validate(req.body);
@@ -52,7 +56,30 @@ router.post('/', async (req, res) => {
   catch(ex) {
     res.status(500).send('Something went wrong');
   }
+  // Fawn does a series of steps(Task) to edit a mongoDB database. If an error occurs on any of the steps, the database is returned to its initial state - before the transaction started.
 });
 
+// === DELETE ===
+
+router.delete('/:id', async (req, res) => {
+  let rental;
+  try {
+    rental = await Rental.findByIdAndDelete(req.params.id);
+  }
+  catch (ex) {
+    console.log('Invalid rental ID provided.', ex.message);
+    return res.status(400).send({ 
+      error: 'Invalid rental ID provided.',
+      info: ex.message
+    });
+  }
+
+  if (!rental) return res.status(404).send({
+    error: `Rental with ID: ${req.params.id} was not found.`
+  });
+
+  console.log('Rental with ID: ' + rental._id + ' was deleted.');
+  res.send(rental);
+});
 
 module.exports = router;

@@ -6,10 +6,14 @@ const router = express.Router();
 const { User, validate } = require('../models/user');
 const auth = require('../middleware/auth');
 
+// === READ ===
+
 router.get('/', async (req, res) => {
   const users = await User.find();
   res.send(users);
 });
+
+// === CREATE ===
 
 router.post('/', async (req, res) => {
   const { error } = validate(req.body);
@@ -26,6 +30,8 @@ router.post('/', async (req, res) => {
   const token = user.generateAuthToken();
   res.header('x-auth-token', token).send(_.pick(user, ['_id', 'name', 'email']));
 });
+
+// === DELETE ===
 
 router.delete('/:id', auth, async (req, res) => {
   let user;
