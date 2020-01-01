@@ -4,9 +4,7 @@
 #### Duration: 15:05:56
 
 
-Current --> 129. Getting the Current User 00:04:04
-
-Урок 130. Logging Out Users 00:02:05
+Current --> 130. Logging Out Users 00:02:05
 
 Урок 131. Role Based Authorization 00:05:44
 
