@@ -4,13 +4,7 @@
 #### Duration: 15:05:56
 
 
-Current --> 130. Logging Out Users 00:02:05
-
-Урок 131. Role Based Authorization 00:05:44
-
-Урок 132. Testing the Authorization 00:04:11
-
-Урок 133. Introduction 00:03:03
+Current --> 133. Introduction 00:03:03
 
 Урок 134. Handling Rejected Promises 00:03:08
 
