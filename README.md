@@ -4,9 +4,7 @@
 #### Duration: 15:05:56
 
 
-Current --> 133. Introduction 00:03:03
-
-Урок 134. Handling Rejected Promises 00:03:08
+Current --> 134. Handling Rejected Promises 00:03:08
 
 Урок 135. Express Error Middleware 00:04:41
 
