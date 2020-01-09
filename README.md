@@ -4,13 +4,7 @@
 #### Duration: 15:05:56
 
 
-Current --> 134. Handling Rejected Promises 00:03:08
-
-Урок 135. Express Error Middleware 00:04:41
-
-Урок 136. Removing Try_Catch docs 00:08:30
-
-Урок 137. Express Async Errors 00:03:19
+Current --> 137. Express Async Errors 00:03:19
 
 Урок 138. Logging Errors 00:06:37
 
