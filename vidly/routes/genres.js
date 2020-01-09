@@ -1,4 +1,5 @@
 
+const asyncMiddleware = require('../middleware/async');
 const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
 const express = require('express');
@@ -26,31 +27,21 @@ router.post('/', auth, async (req, res) => {
 
 // =====  READ  ===== 
 
-router.get('/', async (req, res, next) => {
-  try {
-    const genres = await Genre
-      .find()
-      // .select({ __v: 0 }) // will hide '__v' field
-      .sort('name');
+router.get('/', asyncMiddleware(async (req, res) => {
+  const genres = await Genre
+    .find()
+    // .select({ __v: 0 }) // will hide '__v' field
+    .sort('name');
   res.send(genres);
-  }
-  catch (ex) {
-    next(ex);
-  }
-});
+}));
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', asyncMiddleware(async (req, res) => {
   let genre;
-  try {
-    genre = await Genre.findById(req.params.id);
-    if (!genre) return res.status(404).send('Such genre was not found');
-    console.log(genre);
-    res.send(genre);
-  }
-  catch (ex) {
-    next(ex);
-  }
-});
+  genre = await Genre.findById(req.params.id);
+  if (!genre) return res.status(404).send('Such genre was not found');
+  console.log(genre);
+  res.send(genre);
+}));
 
 
 // =====  UPDATE  =====
