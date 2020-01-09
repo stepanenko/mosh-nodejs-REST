@@ -26,27 +26,30 @@ router.post('/', auth, async (req, res) => {
 
 // =====  READ  ===== 
 
-router.get('/', async (req, res) => {
-  const genres = await Genre
-    .find()
-    // .select({ __v: 0 }) // will hide '__v' field
-    .sort('name');
-  
+router.get('/', async (req, res, next) => {
+  try {
+    const genres = await Genre
+      .find()
+      // .select({ __v: 0 }) // will hide '__v' field
+      .sort('name');
   res.send(genres);
+  }
+  catch (ex) {
+    next(ex);
+  }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req, res, next) => {
   let genre;
   try {
     genre = await Genre.findById(req.params.id);
+    if (!genre) return res.status(404).send('Such genre was not found');
+    console.log(genre);
+    res.send(genre);
   }
-  catch {
-    console.log('Oops, some error occured...');
+  catch (ex) {
+    next(ex);
   }
-  if (!genre) return res.status(404).send('Such genre was not found');
-
-  console.log(genre);
-  res.send(genre);
 });
 
 

@@ -1,4 +1,5 @@
 
+const error = require('./middleware/error');
 const config = require('config');
 const express = require('express');
 const Joi = require('joi');
@@ -34,14 +35,17 @@ app.use('/api/rentals', rentals);
 app.use('/api/users', users);
 app.use('/api/auth', auth);
 
+app.use(error);
+
 app.get('/', (req, res) => {
   res.send('Welcome to Vidly API');
 });
 
 mongoose.connect(
-  'mongodb://rest:rest25@ds046667.mlab.com:46667/mosh-rest',
-  { useNewUrlParser: true }
-  )
+  'mongodb://rest:rest25@ds046667.mlab.com:46667/mosh-rest', { 
+    useCreateIndex: true, // added to avoid (node:1601) DeprecationWarning
+    useNewUrlParser: true 
+})
   .then(() => console.log('Connected to mLab...'))
   .catch(error => console.error('Couldn connect to mLab', error));
 
