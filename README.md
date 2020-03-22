@@ -6,8 +6,6 @@ Duration: **15:05:56**
 
 Updated: **14.02.2019**
 
-#
-
 Current --> 137. Express Async Errors 00:03:19
 
 Урок 138. Logging Errors 00:06:37
@@ -59,4 +57,4 @@ Current --> 137. Express Async Errors 00:03:19
 Урок 210. MongoDB in the Cloud 00:08:24
 
 #
-**Next to watch:** [Real-Time Web with Node.js](https://coursehunters.net/course/frontendmaster-real-time-web-with-node-js) ( Kyle Simpson )
+**Next to-do:** [Real-Time Web with Node.js](https://coursehunters.net/course/frontendmaster-real-time-web-with-node-js) ( Kyle Simpson )
