@@ -6,9 +6,13 @@
 
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://rest:rest25@ds046667.mlab.com:46667/mosh-rest', { useNewUrlParser: true })
+mongoose
+  .connect('mongodb://rest:rest25@ds046667.mlab.com:46667/mosh-rest', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
   .then(console.log('Connected to mLab...'))
-  .catch(error => console.error('Couldnt connect to mLab:', error));
+  .catch(error => console.error('Couldn\'t connect to mLab:', error));
 
 const Course = mongoose.model('Course', {});
 
@@ -25,7 +29,7 @@ function addCourses() {
   });
 }
 
-// addCourses(); // worked without async/await
+// addCourses();   // works without async/await
 
 // EXERCISE 1:
 // async function getCourses() {
@@ -39,7 +43,7 @@ function addCourses() {
 // async function getCourses() {
 //   return await Course
 //     .find({ isPublished: true, tags: { $in: ['backend', 'frontend']} })
-//     .sort('-price') // or .sort({ price: -1 })
+//     .sort('-price')   // or .sort({ price: -1 })
 //     .select({ price: 1, name: 1, author: 1, _id: 0 });
 // }
 
@@ -47,12 +51,12 @@ function addCourses() {
 async function getCourses() {
   return await Course
     .find({ isPublished: true })
-    .or([ { price: { $gte: 15 } }, { name: /.*by.*/i } ])
+    .or([{ price: { $gte: 15 } }, { name: /.*by.*/i }])
     .select({ price: 1, name: 1, author: 1, _id: 0 });
 }
 
 async function displayCourses() {
-  const courses = await getCourses(); // doesnt work without async/await
+  const courses = await getCourses();   // doesn't work without async/await
   console.log(courses);
 }
 

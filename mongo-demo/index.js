@@ -54,7 +54,7 @@ const Course = mongoose.model('Course', courseSchema);
 
 async function createCourse() {
   const course = new Course({
-    _id: new mongoose.Types.ObjectId, // generate proper id
+    _id: new mongoose.Types.ObjectId,   // generates proper id
     name: 'Ruby',
     author: 'Tania',
     tags: 'frontend',
@@ -66,7 +66,7 @@ async function createCourse() {
   try {
     const result = await course.save();
     console.log(result);
-    // await course.validate(); // works but returns void promise
+    // await course.validate();   // works but returns void promise
   }
   catch (ex) {
     for (field in ex.errors) {
@@ -74,12 +74,12 @@ async function createCourse() {
     }
   }
 }
-// createCourse(); // will add a new course
+// createCourse();   // will add a new course
 
 // We have these two ways of generating a valid ids:
 // If the schema of id is not of type ObjectId you cannot operate with findById()
-var id = mongoose.Types.ObjectId(); // will generate a new id
-var id2 = new mongoose.Types.ObjectId; // will also generate a new id
+var id = mongoose.Types.ObjectId();   // will generate a new id
+var id2 = new mongoose.Types.ObjectId;   // will also generate a new id
 // console.log(id, id2); 
 // https://stackoverflow.com/questions/17899750/how-can-i-generate-an-objectid-with-mongoose
 
@@ -118,7 +118,7 @@ async function getCourse() {
     .limit(10)
     .sort({ name: 1 })
     .select({ price: 1, name: 1, author: 1 });
-    // .countDocuments() // 5
+    // .countDocuments()   // 5
     console.log(courses[0].price);
   }
 getCourse();
@@ -152,7 +152,7 @@ async function updateCourse2(id) {
       author: 'Jason',
       isPublished: false
     }
-  }, { new: true }); // without new:true will return doc before the update
+  }, { new: true });   // without new:true will return doc before the update
   console.log(course); 
 }
 // updateCourse2('5c60811b2bc8da0cbc91a0ca');
@@ -164,6 +164,6 @@ async function deleteCourse() {
   // const result = await Course.deleteOne({ author: 'Brandy' });
   const course = await Course.findByIdAndRemove('5a68fe2142ae6a6482c4c9cb');
 
-  console.log(course); // will return Null if the course is not found
+  console.log(course);   // will return Null if the course is not found
 }
 // deleteCourse();
