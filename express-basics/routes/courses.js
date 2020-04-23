@@ -19,8 +19,8 @@ router.get('/:id', (req, res) => {
 });
 
 // router.get('/api/posts/:year/:month', (req, res) => {
-//   res.send(req.params); // returns { "year": "...", "month": "..." }
-//   res.send(req.query); // returns { ?... }
+//   res.send(req.params);   // returns { "year": "...", "month": "..." }
+//   res.send(req.query);   // returns { ?... }
 // });
 
 router.post('/', (req, res) => {
@@ -31,10 +31,10 @@ router.post('/', (req, res) => {
     id: courses.length + 1,
     name: req.body.name
   }
-  
+
   courses = courses.concat(course);
-  // courses = [...courses, course]; // also works
-  
+  // courses = [...courses, course];   // also works
+
   res.send(course);
 });
 
@@ -42,7 +42,7 @@ router.put('/:id', (req, res) => {
   let course = courses.find(c => c.id === parseInt(req.params.id));
 
   if (!course) return res.status(404).send('Course was not found');
-  
+
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -58,7 +58,7 @@ router.delete('/:id', (req, res) => {
 
   const index = courses.indexOf(course);
   courses.splice(index, 1);
-  // ===my version:) ===
+  // ==== my version: ====
   // courses = courses.filter(c => c !== course);
 
   res.send(course);

@@ -1,5 +1,5 @@
 {
-  "name": "mosh-REST",
+  "name": "nodejs-basics",
   "version": "1.0.0",
   "description": "https://coursehunters.net/course/node-js-polnoe-rukovodstvo-po-sozdaniyu-restful-api",
   "main": "app.js",

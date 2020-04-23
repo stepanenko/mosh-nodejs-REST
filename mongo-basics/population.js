@@ -1,9 +1,12 @@
 
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://sergio:333444@stepser-komby.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true })
-  .then(() => console.log('Connected to mongoDB'))
-  .catch(err => console.error('Couldnt connect to DB'));
+mongoose.connect(
+  'mongodb+srv://sergio:333444@stepser-komby.mongodb.net/test?retryWrites=true&w=majority',
+  { useNewUrlParser: true, useUnifiedTopology: true }
+)
+  .then(() => console.log('Connected to mongodb.com...'))
+  .catch(err => console.error('Couldn\'t connect to mongodb.com'));
 
 const Author = mongoose.model('Author', new mongoose.Schema({
   name: String,
@@ -39,9 +42,7 @@ async function createAuthor(name, bio, website) {
 }
 
 async function createCategory(name) {
-  const category = new Category({
-    name
-  });
+  const category = new Category({ name });
 
   const result = await category.save();
   console.log(result);
@@ -62,13 +63,20 @@ async function listCourses() {
   const courses = await Course
     .find()
     .populate('author', 'name -_id')
-    .populate('category', 'name -_id')
+    // .populate('category', 'name -_id')
     .select('name author -_id');
 
   console.log(courses);
 }
 
+async function getAuthors() {
+  const authors = await Author.find().select('-_id -__v');
+  console.log(authors);
+}
+
 // createAuthor('Mosh', 'my bio', 'my website');
-// createCourse('Node Course', '5cf3d4e5e2587d1e20a7032f', '5d0d23088e2b040d8c4c9503');
+// createCourse('CoffeeScript', '5cf3d5e366ac7920e4caac15');
 // createCategory('Back End');
 listCourses();
+
+// getAuthors();

@@ -1,4 +1,5 @@
 
+const dotenv = require('dotenv').config({ path: __dirname + '/.env' });
 const error = require('./middleware/error');
 const config = require('config');
 const express = require('express');
@@ -18,7 +19,11 @@ const app = express();
 if (!config.get('jwtPrivateKey')) {
   console.error('FATAL ERROR: jwtPrivateKey is not defined');
   process.exit(1);
+} else {
+  console.log('jwtPrivateKey was set to:', config.get('jwtPrivateKey'));
 }
+
+console.log('dotenv', dotenv.parsed);   // { jwtPrivateKey: 'vidly_jwtPrivateKey' }
 
 app.use(helmet());
 app.use(express.json());
@@ -41,13 +46,13 @@ app.get('/', (req, res) => {
   res.send('Welcome to Vidly API');
 });
 
-mongoose.connect(
-  'mongodb://rest:rest25@ds046667.mlab.com:46667/mosh-rest', { 
-    useCreateIndex: true, // added to avoid (node:1601) DeprecationWarning
-    useNewUrlParser: true 
+mongoose.connect('mongodb://rest:rest25@ds046667.mlab.com:46667/mosh-rest', {
+  useCreateIndex: true,      // added to avoid (node:1601) DeprecationWarning
+  useNewUrlParser: true,     // added to avoid (node:9768) DeprecationWarning
+  useUnifiedTopology: true   // added to avoid (node:9323) DeprecationWarning
 })
   .then(() => console.log('Connected to mLab...'))
-  .catch(error => console.error('Couldn connect to mLab', error));
+  .catch(error => console.error('Could\'n connect to mLab', error));
 
 
 const port = process.env.PORT || 3000;

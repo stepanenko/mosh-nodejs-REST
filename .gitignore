@@ -1,5 +1,8 @@
-/node_modules
-/express-demo/node_modules
-/vidly/node_modules
-/mongo-demo/node_modules
+
+/express-basics/node_modules
+/mongo-basics/node_modules
 /mongo-exercises/node_modules
+/nodejs-basics/node_modules
+
+/vidly/node_modules
+/vidly/.env

@@ -1,7 +1,10 @@
 
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://rest:rest25@ds046667.mlab.com:46667/mosh-rest', { useNewUrlParser: true })
+mongoose.connect(
+  'mongodb://rest:rest25@ds046667.mlab.com:46667/mosh-rest',
+  { useNewUrlParser: true }
+)
   .then(() => console.log('Connected to mongoDB...'))
   .catch((error) => console.error('Couldnt connect to mongoDB...', error));
 
@@ -26,7 +29,7 @@ const courseSchema = new mongoose.Schema({
     type: Array,
     validate: {
       isAsync: true,
-      validator: function(v, callback) {
+      validator: function (v, callback) {
         setTimeout(() => {
           // Do some async work
           const result = v && v.length > 0;
@@ -40,7 +43,7 @@ const courseSchema = new mongoose.Schema({
   isPublished: Boolean,
   price: {             // built-in validators:
     type: Number,
-    required: function() { return this.isPublished; },
+    required: function () { return this.isPublished; },
     min: 5,
     max: 160,
     get: v => Math.round(v),
@@ -109,18 +112,18 @@ async function getCourse() {
 
     // starts with Mosh:
     // .find({ author: /^Mosh/ })
-    
+
     // ends with Hamedani:
     // .find({ author: /Hamedani$/i })
-    
+
     // contains Mosh
     // .find({ author: /.*Mosh.*/i })
     .limit(10)
     .sort({ name: 1 })
     .select({ price: 1, name: 1, author: 1 });
-    // .countDocuments()   // 5
-    console.log(courses[0].price);
-  }
+  // .countDocuments()   // 5
+  console.log(courses[0].price);
+}
 getCourse();
 
 // =======  UPDATE  ========
@@ -153,7 +156,7 @@ async function updateCourse2(id) {
       isPublished: false
     }
   }, { new: true });   // without new:true will return doc before the update
-  console.log(course); 
+  console.log(course);
 }
 // updateCourse2('5c60811b2bc8da0cbc91a0ca');
 

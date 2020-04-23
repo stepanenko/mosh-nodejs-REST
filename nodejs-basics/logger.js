@@ -1,8 +1,5 @@
 
 const EventEmitter = require('events');
-// console.log(__filename);
-// console.log(__dirname);
-
 class Logger extends EventEmitter {
   log(message) {
     console.log(message);
@@ -15,5 +12,4 @@ class Logger extends EventEmitter {
 }
 
 module.exports = Logger;
-// exports.log = log; // also valid
-
+// exports.log = log;   // also valid
