@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 mongoose.connect(
   'mongodb+srv://sergio:333444@stepser-komby.mongodb.net/test?retryWrites=true&w=majority',
+  // 'mongodb+srv://sergio:q1w2@mosh-e5m9i.azure.mongodb.net/test?retryWrites=true&w=majority',
   { useNewUrlParser: true, useUnifiedTopology: true }
 )
   .then(() => console.log('Connected to mongodb.com...'))
@@ -31,19 +32,13 @@ const Course = mongoose.model('Course', new mongoose.Schema({
 }));
 
 async function createAuthor(name, bio, website) {
-  const author = new Author({
-    name,
-    bio,
-    website
-  });
-
+  const author = new Author({ name, bio, website });
   const result = await author.save();
   console.log(result);
 }
 
 async function createCategory(name) {
   const category = new Category({ name });
-
   const result = await category.save();
   console.log(result);
 }
@@ -63,8 +58,8 @@ async function listCourses() {
   const courses = await Course
     .find()
     .populate('author', 'name -_id')
-    // .populate('category', 'name -_id')
-    .select('name author -_id');
+    .populate('category', 'name -_id')
+    .select('name author category -_id');
 
   console.log(courses);
 }
@@ -73,10 +68,16 @@ async function getAuthors() {
   const authors = await Author.find().select('-_id -__v');
   console.log(authors);
 }
+async function getCategories() {
+  const categories = await Category.find().select('name -_id');
+  console.log(categories);
+}
 
 // createAuthor('Mosh', 'my bio', 'my website');
-// createCourse('CoffeeScript', '5cf3d5e366ac7920e4caac15');
-// createCategory('Back End');
-listCourses();
-
+// createCourse('C++', '5ea22074237a63cac3656f05', '5ea21ff3b800fd189c3c5bb0');
+// createCategory('Front-End');
+// createCategory('Back-End');
 // getAuthors();
+// getCategories();
+
+listCourses();
