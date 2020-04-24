@@ -1,8 +1,12 @@
 
 /express-basics/node_modules
 /mongo-basics/node_modules
+/mongo-basics/yarn.lock
 /mongo-exercises/node_modules
+/mongo-exercise/yarn.lock
 /nodejs-basics/node_modules
+/nodejs-basics/yarn.lock
 
 /vidly/node_modules
 /vidly/.env
+/vidly/yarn.lock
