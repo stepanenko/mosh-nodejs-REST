@@ -1,6 +1,6 @@
 {
   "name": "mongo-exercises",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,6 @@
   "author": "Serge",
   "license": "ISC",
   "dependencies": {
-    "mongoose": "^5.7.5"
+    "mongoose": "^5.10.6"
   }
 }

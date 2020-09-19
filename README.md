@@ -1,6 +1,6 @@
 ## Node.js: [The Complete Guide to Build RESTful APIs](https://coursehunters.net/course/node-js-polnoe-rukovodstvo-po-sozdaniyu-restful-api)
 
-By: **Mosh Hamedani**
+Author: **Mosh Hamedani**
 
 Duration: **15:05:56**
 
@@ -55,6 +55,8 @@ Current --> 137. Express Async Errors 00:03:19
 Урок 209. Setting Environment Variables 00:02:45
 
 Урок 210. MongoDB in the Cloud 00:08:24
+
+Updated all packages via `npx npm-check-updates -u` on 19.09.2020
 
 #
 **Next: [Real-Time Web with Node.js](https://coursehunters.net/course/frontendmaster-real-time-web-with-node-js) ( Kyle Simpson )**

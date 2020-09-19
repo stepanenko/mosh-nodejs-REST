@@ -1,6 +1,6 @@
 {
   "name": "mongo-demo",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mongoose": "^5.9.10"
+    "mongoose": "^5.10.6"
   }
 }

@@ -10,3 +10,4 @@
 /vidly/node_modules
 /vidly/.env
 /vidly/yarn.lock
+/vidly/package-lock.json

@@ -9,9 +9,9 @@
   "author": "Sergio",
   "license": "ISC",
   "dependencies": {
-    "underscore": "^1.9.1"
+    "underscore": "^1.11.0"
   },
   "devDependencies": {
-    "jshint": "^2.9.6"
+    "jshint": "^2.12.0"
   }
 }
