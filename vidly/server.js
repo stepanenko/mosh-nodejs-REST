@@ -1,10 +1,12 @@
 
 const dotenv = require('dotenv').config({ path: __dirname + '/.env' });
-const error = require('./middleware/error');
 const config = require('config');
 const express = require('express');
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
+const helmet = require('helmet');
+const mongoose = require('mongoose');
+
 const genres = require('./routes/genres');
 const customers = require('./routes/customers');
 const movies = require('./routes/movies');
@@ -12,22 +14,27 @@ const rentals = require('./routes/rentals');
 const users = require('./routes/users');
 const auth = require('./routes/auth');
 const home = require('./routes/home');
-const helmet = require('helmet');
-const mongoose = require('mongoose');
+const error = require('./middleware/error');
+
 const app = express();
 
+console.log(config.get('jwtPrivateKey'));
 if (!config.get('jwtPrivateKey')) {
   console.error('FATAL ERROR: jwtPrivateKey is not defined');
   process.exit(1);
+  // if error occurs at this point, review video #57 - Configuration
 } else {
   console.log('jwtPrivateKey was set to:', config.get('jwtPrivateKey'));
 }
 
-console.log('dotenv', dotenv.parsed);   // { jwtPrivateKey: 'vidly_jwtPrivateKey' }
+console.log('NODE_ENV:', process.env.NODE_ENV); // or app.get('env')
+// to set to production type "export NODE_ENV=production" in the terminal
 
-app.use(helmet());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+console.log('Parsed Dotenv:', dotenv.parsed);   // { jwtPrivateKey: 'vidly_jwtPrivateKey' }
+
+app.use(helmet()); // express' third-party middleware
+app.use(express.json()); // built-in middleware
+app.use(express.urlencoded({ extended: true })); // built-in middleware
 app.use(express.static('public'));
 
 app.set('view engine', 'pug');

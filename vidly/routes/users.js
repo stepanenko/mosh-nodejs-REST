@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(user.password, salt);
   await user.save();
-  
+
   const token = user.generateAuthToken();
   res.header('x-auth-token', token).send(_.pick(user, ['_id', 'name', 'email']));
 });
@@ -38,8 +38,7 @@ router.delete('/:id', [auth, admin], async (req, res) => {
   let user;
   try {
     user = await User.findByIdAndDelete(req.params.id);
-  }
-  catch(ex) {
+  } catch (ex) {
     console.log('Invalid ID. ', ex.message);
     return res.status(400).send('Invalid ID.');
   }

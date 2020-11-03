@@ -8,6 +8,8 @@ Updated: **14.02.2019**
 
 > Updated all packages on 03.11.2020
 
+> To set environment variables use `export <key>=<value>`
+
 Current --> 137. Express Async Errors 00:03:19
 
 Урок 138. Logging Errors 00:06:37

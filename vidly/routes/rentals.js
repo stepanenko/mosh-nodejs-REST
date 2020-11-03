@@ -50,13 +50,13 @@ router.post('/', async (req, res) => {
         $inc: { numberInStock: -1 }
       })
       .run();
-      
-      res.send(rental);
-  }
-  catch(ex) {
+
+    res.send(rental);
+  } catch (ex) {
     res.status(500).send('Something went wrong');
   }
-  // Fawn does a series of steps(Task) to edit a mongoDB database. If an error occurs on any of the steps, the database is returned to its initial state - before the transaction started.
+  // Fawn does a series of steps(Task) to edit a mongoDB database.
+  // If an error occurs on any of the steps, the database is returned to its initial state.
 });
 
 // === DELETE ===
@@ -68,7 +68,7 @@ router.delete('/:id', async (req, res) => {
   }
   catch (ex) {
     console.log('Invalid rental ID provided.', ex.message);
-    return res.status(400).send({ 
+    return res.status(400).send({
       error: 'Invalid rental ID provided.',
       info: ex.message
     });

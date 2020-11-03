@@ -49,7 +49,7 @@ router.get('/:id', asyncMiddleware(async (req, res) => {
 router.put('/:id', auth, async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
-  
+
   // === Query-First Approach (my version): ===
   // let genre;
   // try {
@@ -70,8 +70,7 @@ router.put('/:id', auth, async (req, res) => {
       { name: req.body.name },
       { new: true }
     );
-  }
-  catch(err) {
+  } catch (err) {
     console.log('Error:', err.message);
   }
   if (!genre) return res.status(404).send('Such genre was not found');

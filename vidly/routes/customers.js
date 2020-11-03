@@ -20,8 +20,7 @@ router.post('/', async (req, res) => {
 
   try {
     customer = await customer.save();
-  }
-  catch (err) {
+  } catch (err) {
     return console.log(err.message);
   }
 
@@ -46,7 +45,7 @@ router.get('/:id', async (req, res) => {
     console.log('Not found');
   }
   if (!customer) return res.status(404).send('Customer was not found');
-  
+
   console.log(customer);
   res.send(customer);
 });
@@ -56,7 +55,7 @@ router.get('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
-  
+
   let customer;
   try {
     customer = await Customer.findById(req.params.id);

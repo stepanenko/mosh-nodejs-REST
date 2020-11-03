@@ -28,6 +28,8 @@ router.post('/', auth, async (req, res) => {
   res.send(movie);
 });
 
+// ==== READ ====
+
 router.get('/', async (req, res) => {
   const movies = await Movie.find();
 
@@ -40,8 +42,7 @@ router.delete('/:id', auth, async (req, res) => {
   let movie;
   try {
     movie = await Movie.findByIdAndDelete(req.params.id);
-  }
-  catch (ex) {
+  } catch (ex) {
     console.log('Invalid movie ID provided.', ex.message);
     return res.status(400).send({ error: 'Invalid movie ID provided.', message: ex.message });
   }
@@ -49,7 +50,7 @@ router.delete('/:id', auth, async (req, res) => {
   if (!movie) return res.status(404).send('Such movie was not found.');
 
   console.log(movie.title, ' <- deleted');
-  res.send(movie);  
+  res.send(movie);
 });
 
 module.exports = router;
