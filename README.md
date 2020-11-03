@@ -1,10 +1,12 @@
 ## Node.js: [The Complete Guide to Build RESTful APIs](https://coursehunters.net/course/node-js-polnoe-rukovodstvo-po-sozdaniyu-restful-api)
 
-Author: **Mosh Hamedani**
+Course Teacher: **Mosh Hamedani**
 
 Duration: **15:05:56**
 
 Updated: **14.02.2019**
+
+> Updated all packages on 03.11.2020
 
 Current --> 137. Express Async Errors 00:03:19
 
